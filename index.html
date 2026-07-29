@@ -227,7 +227,7 @@
     .btn-ghost:hover { color: var(--text); border-color: var(--text-muted); text-decoration: none; }
 
     /* Hero photo layout */
-    .hero-layout { display: grid; grid-template-columns: 1fr 420px; gap: 72px; align-items: start; }
+    .hero-layout { display: grid; grid-template-columns: minmax(0,1fr) 420px; gap: 72px; align-items: start; }
     .hero-photo-col { display: flex; justify-content: center; padding-top: 12px; position: sticky; top: 80px; }
     .hero-photo-wrap { position: relative; }
     .hero-photo { width: 400px; height: 500px; object-fit: cover; object-position: center top; border-radius: 20px; border: 1px solid var(--border); display: block; filter: grayscale(18%); transition: filter 0.5s ease; }
@@ -236,7 +236,7 @@
     .hero-photo { position: relative; z-index: 1; }
     .hero-photo-placeholder { width: 400px; height: 500px; border-radius: 20px; background: var(--bg-card); border: 1px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text-faint); font-size: 0.8rem; text-align: center; padding: 24px; }
     @media (max-width: 900px) {
-      .hero-layout { grid-template-columns: 1fr; gap: 40px; }
+      .hero-layout { grid-template-columns: minmax(0,1fr); gap: 40px; }
       .hero-photo-col { justify-content: flex-start; position: static; order: -1; }
       .hero-photo, .hero-photo-placeholder { width: 200px; height: 250px; }
     }
@@ -353,6 +353,32 @@
     .badge-confirmed { background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid var(--accent-dim); }
     .badge-invited   { background: rgba(255,200,50,0.08); color: #ffcc33; border: 1px solid #664d00; }
     .badge-pending   { background: rgba(128,128,128,0.08); color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* ===================== HACKATHON TILES ===================== */
+    .hackathon-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .hackathon-tile {
+      display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit;
+      transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+    }
+    a.hackathon-tile:hover { border-color: var(--accent-dim); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); text-decoration: none; }
+    .hackathon-tile-banner { position: relative; width: 100%; aspect-ratio: 2.2 / 1; background: var(--tag-bg); overflow: hidden; }
+    .hackathon-tile-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hackathon-tile-fallback {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 800; letter-spacing: 0.02em; color: #fff;
+    }
+    .hackathon-tile-badge {
+      position: absolute; top: 10px; right: 10px; backdrop-filter: blur(4px);
+    }
+    .hackathon-tile-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .hackathon-tile-name { font-size: 0.98rem; font-weight: 700; color: var(--text); line-height: 1.35; }
+    .hackathon-tile-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+    .hackathon-tile-meta span { font-size: 0.72rem; color: var(--text-faint); display: inline-flex; align-items: center; gap: 4px; }
+    .hackathon-tile-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
+    .hackathon-tile-footer { font-size: 0.76rem; color: var(--accent); margin-top: 2px; }
+    a.hackathon-tile:hover .hackathon-tile-footer { text-decoration: underline; }
+    @media (max-width: 480px) { .hackathon-tile-grid { grid-template-columns: 1fr; } }
 
     /* ===================== MENTORSHIP ===================== */
     .mentorship-grid { display: flex; flex-direction: column; gap: 20px; }
@@ -1280,7 +1306,7 @@
     </div>
     <!-- Group 1: Hackathons -->
     <div class="tab-group-label">Hackathons</div>
-    <div class="memberships-grid" id="hackathonsGrid"></div>
+    <div class="hackathon-tile-grid" id="hackathonsGrid"></div>
     <!-- Group 2: Peer-Reviewer -->
     <div class="tab-group-label" style="margin-top:36px;">Current TPC &amp; Reviewing Leadership</div>
     <div class="memberships-grid" id="peerReviewGrid"></div>
@@ -1689,18 +1715,132 @@ const PROJECTS = [
 // ==================================================================
 const JUDGING_HACKATHONS = [
   {
-    name: "SpectrumCircle Summer Hackathon 2026",
-    role: "Judge", roleClass: "role-fellow",
-    description: "SpectrumCircle is an India-based innovation ecosystem connecting students, academia, and industry mentors. Confirmed judge for the Summer Hackathon 2026; judging began June 7, 2026, with an invitation to mentor participants after the event.",
-    category: "Hackathon · 2026", url: "https://spectrumcircle.in/",
-    iconBg: "#1a1060", iconText: "SC", iconTextColor: "#a78bfa"
+    name: "DSH Hacks V1",
+    url: "https://dsh-hacks-v1.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/004/466/363/datas/original.png",
+    initials: "DSH", iconBg: "#0a1a30",
+    dates: "Judged Jun 15 – Jul 1, 2026", venue: "Online", participants: "1,298 participants", prize: null,
+    description: "Students 13 and up build AI tools that improve, enhance, or expand STEM education. Global online hackathon hosted by DeltaForge Hacks, NXTHorizon, and STEMise, with 1,298 participants and prizes from CodeCrafters and Featherless AI."
+  },
+  {
+    name: "Assistive Innovation Challenge 2026",
+    url: "https://assistive-innovation-challenge.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/004/638/867/datas/full_width.png",
+    initials: "AI", iconBg: "#0a1a18",
+    dates: "Submissions due Aug 1, 2026", venue: "Online", participants: "280 participants", prize: null,
+    description: "Builders ship software-based assistive technology that improves accessibility, autonomy, or quality of life for people with disabilities. Online hackathon with 280 participants."
+  },
+  {
+    name: "United Hackathon V7",
+    url: "https://unitedhacksv7.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/004/323/618/datas/full_width.png",
+    initials: "UH", iconBg: "#1a0a30",
+    dates: "Jul 10–12, 2026", venue: "Online", participants: "1,194 participants", prize: "$700+ cash",
+    description: "A 48-hour virtual build-and-pitch hackathon run by Hack United, with General and Sports-themed tracks. Global, 1,194 participants, $700+ in cash prizes."
   },
   {
     name: "Beyond Tomorrow Hackathon 2026",
-    role: "Judge", roleClass: "role-senior",
-    description: "Global hackathon hosted on Devpost where developers, AI engineers, and founders build projects judged on originality and real-world impact. Invited to serve on the judging panel; confirmation in progress.",
-    category: "Hackathon · 2026", url: "https://beyond-tomorrow-summit-30094.devpost.com/",
-    iconBg: "#1a0a00", iconText: "BT", iconTextColor: "#ffcc33"
+    url: "https://beyond-tomorrow-summit-30094.devpost.com/",
+    logoUrl: null,
+    initials: "BT", iconBg: "#1a0a00",
+    dates: "May 15 – Jul 8, 2026", venue: "Online", participants: "360 participants", prize: "$1,800",
+    description: "Developers, AI engineers, and founders build across AI, cybersecurity, Web3, healthcare, and sustainability, judged on innovation, technical execution, and real-world impact. Global, 360 participants, $1,800 in prizes."
+  },
+  {
+    name: "International AI Agents Hackathon",
+    url: "https://v0-international-ai-hackathon.vercel.app/",
+    logoUrl: null,
+    initials: "AI", iconBg: "#0a1a30",
+    dates: "Judged Jun 1–12, 2026", venue: "Online", participants: null, prize: null,
+    description: "Developers build and demo the next generation of AI agent solutions in intelligent automation. Virtual hackathon; judging ran June 1 to 12, 2026."
+  },
+  {
+    name: "HackPrix Season 3",
+    url: "https://hackprix-2026.devfolio.co/",
+    logoUrl: "https://assets.devfolio.co/hackathons/5681da5779a24b7c86d4779441c33bab/assets/cover/276.png",
+    initials: "HP", iconBg: "#1a1200",
+    dates: "Jun 13–14, 2026", venue: "Hyderabad, India", participants: "550+ builders, 150+ teams", prize: "$3,653",
+    description: "Themed Build For Better: a 2-day in-person hackathon with tracks in IoT, generative AI, blockchain, cybersecurity, and sustainability. 550+ builders across 150+ teams from 25 Indian states, $3,653 in prizes."
+  },
+  {
+    name: "MPC Hack",
+    url: "https://mpchacks.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/004/702/502/datas/full_width.jpg",
+    initials: "MPC", iconBg: "#0a1a30",
+    dates: "May 30–31, 2026", venue: "Montreal, Canada", participants: "193 participants", prize: "Sponsor prizes to $1,750",
+    description: "An in-person, open-ended 24-hour hackathon built by student communities from McGill, Polytechnique Montréal, and Concordia. Held at Polytechnique's Lassonde Pavilion, 193 participants."
+  },
+  {
+    name: "JAMHacks 10",
+    url: "https://www.jamhacks.ca/",
+    logoUrl: null,
+    initials: "JH", iconBg: "#1a0818",
+    dates: "Jun 12–14, 2026", venue: "Waterloo, Canada", participants: "200+ high schoolers", prize: null,
+    description: "Canada's largest high school hackathon: a 36-hour weekend of building, workshops, and mentorship at the University of Waterloo. Themed Learn, Connect, Innovate for its 10th year, with 200+ students."
+  },
+  {
+    name: "DESIGN4FUTURE",
+    url: "https://design4future.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/004/664/872/datas/original.png",
+    initials: "D4F", iconBg: "#0a1a30",
+    dates: "Judged May 31, 2026", venue: "Online", participants: "302 participants", prize: null,
+    description: "Students build tools that keep people productive, organized, and in control of daily life. Global online hackathon running May 3 to June 6, 2026, 302 participants, with prizes from CodeCrafters and NordVPN."
+  },
+  {
+    name: "Spectrum Circle Summer Hackathon 2026",
+    url: "https://sc-summer-hackathon-2026.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/004/623/740/datas/original.png",
+    initials: "SC", iconBg: "#1a1060",
+    dates: "Jun 1–7, 2026", venue: "Online", participants: "361 participants", prize: "Internships, top 7 teams",
+    description: "Spectrum Circle connects student builders to real-world problem statements in agentic AI, full-stack development, and IoT, with internship offers for the top 7 teams. 361 participants."
+  },
+  {
+    name: "NextGen Hackathon (Hack4Today)",
+    url: "https://nextgenhacks.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/004/596/349/datas/full_width.png",
+    initials: "NG", iconBg: "#0a1830",
+    dates: "Apr 20 – Jun 18, 2026", venue: "Online", participants: "1,342 registered", prize: "$1,000+",
+    description: "A beginner-friendly hackathon open to student builders across apps, tools, games, and AI. Global, 1,342 registered participants, $1,000+ in cash prizes."
+  },
+  {
+    name: "FutureHacks",
+    url: "https://futurehacks.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/004/724/740/datas/original.png",
+    initials: "FH", iconBg: "#0a1a18",
+    dates: "Jun 24–28, 2026", venue: "Online", participants: "266 participants", prize: "$5,010 cash",
+    description: "Themed Build the City of Tomorrow, Today: teen builders tackle smart infrastructure, sustainability, and urban living. Run by TechShare Project, a 501(c)(3) STEM education nonprofit, with 266 participants."
+  },
+  {
+    name: "Vakathon",
+    url: "https://the-vakathon.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/004/718/124/datas/full_width.jpg",
+    initials: "VK", iconBg: "#1a0a30",
+    dates: "Jul 11, 2026", venue: "San Ramon, CA", participants: "95 participants", prize: "$1,000+",
+    description: "An 8-hour in-person hackathon for teen students building technology with community and social impact. Held at the San Ramon Community Center, 95 participants."
+  },
+  {
+    name: "GitHub Readme Generation Hackathon",
+    url: "https://github-readme-generation.devpost.com/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_thumbnails/004/601/116/datas/original.png",
+    initials: "GH", iconBg: "#0d1117",
+    dates: "Through Jul 2026", venue: "Online", participants: "487 participants", prize: null,
+    description: "Builders create SDG 3 (good health and well-being) apps and scan them with PresentMe's repo-reporter tool. Global online hackathon with 487 participants, prizes include PresentMe Enterprise access and GitHub Student Pack credits."
+  },
+  {
+    name: "HackMIT 2026",
+    url: "https://hackmit.org/",
+    logoUrl: null,
+    initials: "MIT", iconBg: "#8a0000",
+    dates: "Sep 19–20, 2026", venue: "Cambridge, MA", participants: "~1,200 students", prize: null,
+    description: "A 24-hour hackathon at MIT, one of the largest student-run collegiate hackathons in the world, drawing roughly 1,200 university students annually from across the globe."
+  },
+  {
+    name: "Hack-Nation: Global AI Hackathon",
+    url: "https://hack-nation.ai/",
+    logoUrl: "https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/004/433/172/datas/full_width.png",
+    initials: "HN", iconBg: "#8a0000",
+    dates: "Jul 18–19, 2026", venue: "13 hubs + online", participants: null, prize: "$35k+ cash & credits",
+    description: "A hyper-decentralized 24-hour AI build sprint running simultaneously across 13 tech hubs, from Cambridge and San Francisco to London, Paris, and Delhi, plus an online track. MIT-backed, $35k+ in cash and credits."
   }
 ];
 
@@ -2248,8 +2388,34 @@ function renderJudgingCards(gridId, items) {
   }).join('');
 }
 
+function renderHackathonTiles(gridId, items) {
+  document.getElementById(gridId).innerHTML = items.map(h => {
+    const tag = h.url ? 'a' : 'div';
+    const linkAttrs = h.url ? `href="${h.url}" target="_blank" rel="noopener noreferrer"` : '';
+    const metaBits = [h.dates, h.venue, h.participants, h.prize].filter(Boolean)
+      .map(m => `<span>${m}</span>`).join('');
+    const banner = h.logoUrl
+      ? `<img src="${h.logoUrl}" alt="${h.name} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+         <div class="hackathon-tile-fallback" style="display:none; background:${h.iconBg};">${h.initials}</div>`
+      : `<div class="hackathon-tile-fallback" style="background:${h.iconBg};">${h.initials}</div>`;
+    return `
+      <${tag} class="hackathon-tile reveal" ${linkAttrs}>
+        <div class="hackathon-tile-banner">
+          ${banner}
+          <span class="hackathon-tile-badge judge-badge badge-confirmed">Judge</span>
+        </div>
+        <div class="hackathon-tile-body">
+          <div class="hackathon-tile-name">${h.name}</div>
+          <div class="hackathon-tile-meta">${metaBits}</div>
+          <p class="hackathon-tile-desc">${h.description}</p>
+          ${h.url ? `<span class="hackathon-tile-footer">Visit event →</span>` : ''}
+        </div>
+      </${tag}>`;
+  }).join('');
+}
+
 function renderJudging() {
-  renderJudgingCards('hackathonsGrid', JUDGING_HACKATHONS);
+  renderHackathonTiles('hackathonsGrid', JUDGING_HACKATHONS);
   renderJudgingCards('peerReviewGrid', JUDGING_PEER_REVIEW);
   renderJudgingCards('tpcMainGrid', JUDGING_TPC_MAIN);
   renderJudgingCards('tpcWorkshopGrid', JUDGING_TPC_WORKSHOP);
