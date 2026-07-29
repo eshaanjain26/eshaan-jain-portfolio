@@ -399,9 +399,14 @@
 
     /* ===================== MEDIA ===================== */
     .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-    .media-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: border-color 0.15s; display: flex; flex-direction: column; gap: 10px; }
+    .media-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.15s; display: flex; flex-direction: column; }
     .media-card:hover { border-color: var(--accent-dim); }
-    .media-card-top { display: flex; align-items: center; justify-content: space-between; }
+    .media-card-banner { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--tag-bg); overflow: hidden; }
+    .media-card-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .media-card-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; letter-spacing: 0.02em; color: #fff; }
+    .media-card-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .media-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .media-card-tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .media-platform { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 100px; }
     .platform-forbes  { background: rgba(0,100,180,0.12); color: #60a5fa; border: 1px solid #1e3a5f; }
     .platform-ieee    { background: rgba(0,98,155,0.12); color: #7dd3fc; border: 1px solid #0c3a5c; }
@@ -409,6 +414,10 @@
     .platform-apex    { background: rgba(124,58,237,0.12); color: #a78bfa; border: 1px solid #4c1d95; }
     .platform-linkedin{ background: rgba(10,102,194,0.12); color: #60a5fa; border: 1px solid #1e3a5f; }
     .platform-elsevier{ background: rgba(255,102,0,0.10); color: #fb923c; border: 1px solid #7c2d12; }
+    .platform-toi      { background: rgba(226,0,58,0.10); color: #f87171; border: 1px solid #7c1d1d; }
+    .platform-aijourn   { background: rgba(245,158,11,0.10); color: #fbbf24; border: 1px solid #78350f; }
+    .platform-productcoalition { background: rgba(236,72,153,0.10); color: #f472b6; border: 1px solid #831843; }
+    .media-role-tag { font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 2px 8px; border-radius: 100px; }
     .media-year { font-size: 0.74rem; color: var(--text-faint); }
     .media-title { font-size: 0.97rem; font-weight: 600; color: var(--text); line-height: 1.4; }
     .media-desc  { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
@@ -796,6 +805,7 @@
       <li><a href="#mentorship">Mentorship</a></li>
       <li><a href="#speaking">Speaking</a></li>
       <li><a href="#media">Media</a></li>
+      <li><a href="#publishedArticles">Articles</a></li>
       <li><a href="#memberships">Memberships</a></li>
       <!-- Mobile-only: real anchor for Get in Touch (hidden on desktop via CSS) -->
       <li class="nav-mobile-cta"><a href="#contact">Get in Touch</a></li>
@@ -1347,6 +1357,17 @@
       <span class="section-count">Featured articles &amp; coverage</span>
     </div>
     <div class="media-grid" id="mediaGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================ PUBLISHED ARTICLES ============================================================ -->
+<section id="publishedArticles">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Published Articles</h2>
+      <span class="section-count">Bylines &amp; contributor features</span>
+    </div>
+    <div class="media-grid" id="publishedArticlesGrid"></div>
   </div>
 </section>
 
@@ -2026,6 +2047,73 @@ const MEDIA = [
     title: "3 Peer-Reviewed Papers (IEEE & Elsevier)",
     description: "Published research on demand forecasting, bio-inspired image classification, and mobile cloud computing architecture. 55+ total citations on Google Scholar.",
     url: "https://scholar.google.com/citations?user=XA_-VzAAAAAJ"
+  },
+  {
+    platform: "Times of India", platformClass: "platform-toi", type: "Feature",
+    year: "2026",
+    title: "Strong CPQ and Contract Data Are Key to Unlocking Agentic AI, Says Tech Leader Eshaan Jain",
+    description: "Profile on how CPQ architecture and contract data quality determine whether an enterprise is actually ready for agentic AI, not just able to demo it.",
+    url: "https://timesofindia.indiatimes.com/education/news/strong-cpq-and-contract-data-are-key-to-unlocking-agentic-ai-says-tech-leader-eshaan-jain/articleshow/131582299.cms",
+    imageUrl: null, imageFallback: "TOI", iconBg: "#7c1d1d"
+  },
+  {
+    platform: "AI Journal", platformClass: "platform-aijourn", type: "Feature",
+    year: "2026",
+    title: "Beyond Productivity: How Enterprise AI Can Protect Revenue and Reduce Contract Risk",
+    description: "Interview on why AI's biggest enterprise value is catching financial exposure, not just moving faster: systematic contract intelligence cutting review time from weeks to days across billions in contractual risk.",
+    url: "https://aijourn.com/beyond-productivity-how-enterprise-ai-can-protect-revenue-and-reduce-contract-risk/",
+    imageUrl: "https://aijourn.com/wp-content/uploads/2026/07/Eshaan-Professional-Headshot-640x470.jpeg", imageFallback: "AIJ", iconBg: "#78350f"
+  }
+];
+
+// ==================================================================
+//  PUBLISHED ARTICLES  (bylines + Forbes Technology Council contributor quotes)
+// ==================================================================
+const PUBLISHED_ARTICLES = [
+  {
+    platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Article",
+    roleTag: "role-fellow", roleLabel: "Author",
+    year: "Jul 2026",
+    title: "Who's Accountable When An AI Agent Approves A Discount?",
+    description: "Argues that agentic pricing needs governance built in before deployment: defined approval-authority limits, audit trails, and oversight, especially with the EU AI Act's compliance deadline approaching.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/07/15/whos-accountable-when-an-ai-agent-approves-a-discount/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a567322d0d15fced19a1bae//0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
+  },
+  {
+    platform: "Product Coalition", platformClass: "platform-productcoalition", type: "Article",
+    roleTag: "role-fellow", roleLabel: "Author",
+    year: "Jun 2026",
+    title: "What Happened When I Started Using AI Every Day",
+    description: "Personal account of a counterintuitive lesson: AI makes writing faster but not alignment faster, since it can make incomplete thinking look polished. The real value is using AI to surface gaps in thinking before drafting, not to speed up the draft.",
+    url: "https://medium.productcoalition.com/what-happened-when-i-started-using-ai-every-day-3747e313a2d7",
+    imageUrl: null, imageFallback: "PC", iconBg: "#831843"
+  },
+  {
+    platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
+    roleTag: "role-member", roleLabel: "Contributing Panelist",
+    year: "Jul 2026",
+    title: "The Future Of Quantum Computing Depends On Trust, Security And Ethics",
+    description: "One of 9 Forbes Technology Council members quoted on quantum governance. Contribution: quantum computing should be built with a trust-by-design mindset, learning from how AI let trust become an afterthought.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/07/10/the-future-of-quantum-computing-depends-on-trust-security-and-ethics/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a50340f0e41da54ae0e24f1/Scales-of-Justice-Displayed-with-Circuitry-Pattern-as-Symbol-of-Digital-Technology/0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
+  },
+  {
+    platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
+    roleTag: "role-member", roleLabel: "Contributing Panelist",
+    year: "Jun 2026",
+    title: "Tech Startup Leaders: Key Signs It's Time To Consider An Exit",
+    description: "Contributing panelist on startup exit timing. Contribution: the strongest exit window opens when a startup pivots from innovation to scaling and margin, since acquirers pay the highest premium before the business turns operations-heavy.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/06/26/tech-startup-leaders-key-signs-its-time-to-consider-an-exit/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a3e9525d58c550fbe462fa3/Three-business-professionals-sit-around-a-conference-table-as-two-people-shake-hands-/0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
+  },
+  {
+    platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
+    roleTag: "role-member", roleLabel: "Contributing Panelist",
+    year: "Jun 2026",
+    title: "SaaS Competitive Advantages That AI Can't Easily Replicate",
+    description: "Contributing panelist on AI-resistant SaaS moats. Contribution: AI lowers the barrier to copying features, so the real moat shifts from what a platform does to how deeply it's woven into a customer's workflow.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/06/24/saas-competitive-advantages-that-ai-cant-easily-replicate/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a3986879db48ec843dd4ac1/A-person-points-toward-a-digital-SaaS-interface-featuring-a-central-cloud-icon/0x0.jpg?crop=4995%2C2809%2Cx849%2Cy0%2Csafe&width=960", imageFallback: "F", iconBg: "#1e3a5f"
   }
 ];
 
@@ -2491,16 +2579,45 @@ function renderSpeaking() {
   }).join('');
 }
 
+function mediaCardBanner(m) {
+  if (!m.imageFallback) return '';
+  const fallback = `<div class="media-card-fallback" style="background:${m.iconBg || '#1a1a1a'};${m.imageUrl ? 'display:none;' : ''}">${m.imageFallback}</div>`;
+  const img = m.imageUrl ? `<img src="${m.imageUrl}" alt="${m.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">` : '';
+  return `<div class="media-card-banner">${img}${fallback}</div>`;
+}
+
 function renderMedia() {
   document.getElementById('mediaGrid').innerHTML = MEDIA.map(m => `
     <div class="media-card reveal">
-      <div class="media-card-top">
-        <span class="media-platform ${m.platformClass}">${m.platform}</span>
-        <span class="media-year">${m.year}</span>
+      ${mediaCardBanner(m)}
+      <div class="media-card-body">
+        <div class="media-card-top">
+          <span class="media-platform ${m.platformClass}">${m.platform}</span>
+          <span class="media-year">${m.year}</span>
+        </div>
+        <div class="media-title">${m.title}</div>
+        <p class="media-desc">${m.description}</p>
+        <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">Read article →</a>
       </div>
-      <div class="media-title">${m.title}</div>
-      <p class="media-desc">${m.description}</p>
-      <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">Read article →</a>
+    </div>`).join('');
+}
+
+function renderPublishedArticles() {
+  document.getElementById('publishedArticlesGrid').innerHTML = PUBLISHED_ARTICLES.map(m => `
+    <div class="media-card reveal">
+      ${mediaCardBanner(m)}
+      <div class="media-card-body">
+        <div class="media-card-top">
+          <div class="media-card-tags">
+            <span class="media-platform ${m.platformClass}">${m.platform}</span>
+            <span class="media-role-tag ${m.roleTag}">${m.roleLabel}</span>
+          </div>
+          <span class="media-year">${m.year}</span>
+        </div>
+        <div class="media-title">${m.title}</div>
+        <p class="media-desc">${m.description}</p>
+        <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">Read article →</a>
+      </div>
     </div>`).join('');
 }
 
@@ -2768,6 +2885,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderMentorship();
   renderSpeaking();
   renderMedia();
+  renderPublishedArticles();
   renderEducation();
   renderMemberships();
   renderSkillMatrix();
@@ -2834,6 +2952,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mentorship:  '#0b1233',   // navy
     speaking:    '#241d08',   // gold
     media:       '#230a29',   // magenta
+    publishedArticles: '#0a1c2e', // steel blue
     memberships: '#291a0a',   // amber
     contact:     '#050505',   // near black
   };
@@ -2848,6 +2967,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mentorship:  '#e7ebfe',
     speaking:    '#fdf5da',
     media:       '#fae6fd',
+    publishedArticles: '#e3eef9',
     memberships: '#ffeeda',
     contact:     '#f2f4f7',
   };
