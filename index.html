@@ -154,6 +154,26 @@
       transition: background 0.15s, border-color 0.15s;
     }
     .theme-toggle:hover { background: var(--bg-hover); border-color: var(--accent-dim); color: var(--text); }
+
+    /* ===================== COMMAND-K ===================== */
+    .cmdk-overlay {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(2px);
+      align-items: flex-start; justify-content: center; padding-top: 12vh;
+    }
+    .cmdk-overlay.open { display: flex; }
+    .cmdk-box { width: 90%; max-width: 560px; max-height: 70vh; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column; }
+    .cmdk-input-row { display: flex; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--border); color: var(--text-faint); }
+    .cmdk-input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 0.95rem; font-family: inherit; }
+    .cmdk-input::placeholder { color: var(--text-faint); }
+    .cmdk-esc { font-size: 0.68rem; color: var(--text-faint); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; font-family: inherit; }
+    .cmdk-results { overflow-y: auto; padding: 8px; }
+    .cmdk-item { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 8px; cursor: pointer; text-decoration: none; color: inherit; }
+    .cmdk-item.active { background: var(--tag-bg); }
+    .cmdk-item:hover { background: var(--tag-bg); text-decoration: none; }
+    .cmdk-item-title { font-size: 0.87rem; font-weight: 600; color: var(--text); }
+    .cmdk-item-meta { font-size: 0.72rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+    .cmdk-empty { padding: 24px 12px; text-align: center; font-size: 0.85rem; color: var(--text-faint); }
     .btn-book-nav {
       display: inline-flex; align-items: center; gap: 6px;
       background: transparent; border: 1px solid var(--accent);
@@ -215,6 +235,11 @@
     .hero-name { font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 0; }
     .hero-title { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 24px; font-weight: 400; max-width: 580px; }
     .hero-bio { font-size: 0.94rem; color: var(--text-muted); max-width: 580px; margin-bottom: 32px; line-height: 1.75; }
+    .upcoming-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 12px; border-radius: 100px; background: var(--tag-bg); border: 1px solid var(--accent-dim); margin-bottom: 28px; font-size: 0.82rem; }
+    .upcoming-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: upcoming-pulse 2s ease-in-out infinite; }
+    @keyframes upcoming-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .upcoming-label { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.68rem; color: var(--accent); }
+    .upcoming-text { color: var(--text-muted); }
     .hero-stats { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 36px; }
     .stat { display: flex; flex-direction: column; }
     .stat-number { font-size: 1.55rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
@@ -225,6 +250,7 @@
     .btn-primary:hover { background: #00f0c0; text-decoration: none; }
     .btn-ghost  { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
     .btn-ghost:hover { color: var(--text); border-color: var(--text-muted); text-decoration: none; }
+    .btn-vcard { width: 100%; justify-content: center; margin-top: 14px; cursor: pointer; font-family: inherit; }
 
     /* Hero photo layout */
     .hero-layout { display: grid; grid-template-columns: minmax(0,1fr) 420px; gap: 72px; align-items: start; }
@@ -250,6 +276,16 @@
     .emp-chip { height: 56px; padding: 12px 20px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; justify-content: center; }
     .emp-chip svg { display: block; }
     [data-theme="light"] .emp-chip { box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+
+    /* ===================== PRESS STRIP ===================== */
+    .press-strip { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .press-strip-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-faint); margin-bottom: 20px; }
+    .press-logo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .press-logo-item { display: flex; align-items: center; height: 44px; padding: 8px 18px; background: #ffffff; border: 1px solid var(--border); border-radius: 10px; opacity: 0.92; transition: opacity 0.2s, transform 0.2s; text-decoration: none; }
+    .press-logo-item:hover { opacity: 1; transform: translateY(-2px); text-decoration: none; }
+    .press-logo-item img, .press-logo-item svg { display: block; }
+    [data-theme="light"] .press-logo-item { box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    @media (max-width: 640px) { .press-logo-item { height: 36px; padding: 6px 14px; } }
 
     /* ===================== AFFILIATIONS ===================== */
     .affiliation-bar { margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--border); }
@@ -463,6 +499,13 @@
 
     /* ===================== TAB GROUP LABELS ===================== */
     .tab-group-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 16px; margin-top: 4px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+    /* ===================== JUDGING FILTER ===================== */
+    .judging-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .judging-filter-chip { font-size: 0.8rem; font-weight: 600; padding: 7px 16px; border-radius: 100px; background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .judging-filter-chip:hover { color: var(--text); border-color: var(--text-muted); }
+    .judging-filter-chip.active { background: var(--accent); color: #000; border-color: var(--accent); }
+    .judging-group[hidden] { display: none; }
 
     /* ===================== CONTACT ===================== */
     #contact { padding-top: 80px; padding-bottom: 80px; }
@@ -783,6 +826,104 @@
 <symbol id="sym-amgen" viewBox="0 0 166.864 42.687"><path fill="#2162a5" d="M 35.608,41.17 V 1.669 c 4.997,0.33 9.078,2.658 12.488,6.28 3.657,3.88 5.938,8.666 7.914,13.558 C 59.338,12.405 65.606,2.586 76.2,1.669 V 15.404 C 77.682,11.112 79.893,7.219 83.526,4.374 87.407,1.317 92.216,0 97.096,0 c 8.831,0 17.675,6.056 19.25,15.04 h -10.185 c -1.739,-4.021 -5.443,-5.632 -9.7,-5.632 -6.737,0 -11.901,4.998 -11.901,11.807 0,7.056 4.681,12.23 11.842,12.23 3.021,0 5.903,-0.93 8.078,-3.082 1.212,-1.211 1.94,-2.715 2.587,-4.278 H 95.356 v -9.433 h 21.708 V 1.669 h 20.354 v 9.502 h -10.631 v 5.479 h 10.631 v 9.433 h -10.631 v 5.586 h 10.631 v 9.502 H 117.064 V 26.083 c -0.694,3.352 -2.094,6.196 -4.233,8.889 -4.068,5.115 -10.077,7.715 -16.58,7.715 -4.928,0 -9.771,-1.281 -13.583,-4.527 C 79.304,35.304 77.294,31.597 76.2,27.389 V 41.17 H 66.675 V 19.779 c -4.574,6.067 -6.115,13.922 -6.256,21.392 h -8.96 C 51.295,33.644 49.296,26.107 45.133,19.779 V 41.17 h -9.525 z"/><path fill="#2162a5" d="m 157.339,1.669 h 9.524 V 41.17 h -8.597 C 156.995,34.631 153.904,26.316 148.53,22.166 V 41.17 h -9.537 V 1.646 c 4.327,0.881 9.983,5.327 13.136,8.349 2.022,1.952 3.998,4.092 5.21,6.655 V 1.669 z"/><path fill="#2162a5" d="M 0,41.17 0.283,40.204 1.917,34.641 C 3.27,30.067 5.069,25.538 7.044,21.2 12.042,10.148 20.368,1.493 33.138,1.493 c 0.293,0 0.588,0.012 0.882,0.012 V 41.17 H 24.424 V 31.584 H 12.219 l -0.271,0.848 -0.576,1.752 -0.788,2.775 -0.753,3.045 -0.306,1.166 H 0 z M 16.546,22.167 h 7.878 v -9.021 c -4.174,1.941 -5.926,5.045 -7.878,9.021 z"/></symbol>
 <symbol id="sym-usc" viewBox="0 0 122.28125 182"><g><path fill="#ffc72c" d="m19.112 1.0078-17.838 17.838 0.0002 37.457 17.834 17.84h27.944l-14.997 14.998v5.595h-2.839v-15.974h-27.942l0.0002 24.408 17.838 17.84h12.943v42.16l17.836 17.84h53.829l17.84-17.84v-24.41h-27.946v15.98h-33.621v-33.73h12.943l17.838-17.84v-5.596h2.84v15.976h27.946v-24.405l-17.84-17.842h-12.946v-5.59l-17.836-17.84-43.722-0.002v-20.592h33.619v15.973h27.939v-24.404l-17.838-17.84-53.824-0.0002z"/><path d="m20.289 3.8457l-16.178 16.175 0.0003 35.108 16.174 16.176h45.385v26.269h-5.676v20.596h11.764l16.178-16.18v-35.101l-16.174-16.176-45.387-0.002v-26.273h39.295v15.976h22.266v-20.391l-16.174-16.177-51.473-0.0003zm30.777 70.297l-16.175 16.173v0.002 71.672l16.173 16.18h51.476l16.18-16.18v-20.39h-22.271v15.98h-39.295v-62.844h5.68v-20.591l-11.768-0.002zm39.707 0v20.593h5.678v15.974h22.269v-20.39l-16.18-16.177h-11.767zm-86.662 7.459v20.388l16.174 16.18h11.77v-20.596h-5.68v-15.972h-22.264z" fill="#9d2235"/></g></symbol>
 <symbol id="sym-forbes" viewBox="0 0 200 54"><path fill="currentColor" d="M113.3 18.2c0-5.8.1-11.2.4-16.2L98.4 4.9v1.4l1.5.2c1.1.1 1.8.5 2.2 1.1.4.7.7 1.7.9 3.2.2 2.9.4 9.5.3 19.9 0 10.3-.1 16.8-.3 19.3 5.5 1.2 9.8 1.7 13 1.7 6 0 10.7-1.7 14.1-5.2 3.4-3.4 5.2-8.2 5.2-14.1 0-4.7-1.3-8.6-3.9-11.7-2.6-3.1-5.9-4.6-9.8-4.6-2.6 0-5.3.7-8.3 2.1zm.3 30.8c-.2-3.2-.4-12.8-.4-28.5.9-.3 2.1-.5 3.6-.5 2.4 0 4.3 1.2 5.7 3.7 1.4 2.5 2.1 5.5 2.1 9.3 0 4.7-.8 8.5-2.4 11.7-1.6 3.1-3.6 4.7-6.1 4.7-.8-.2-1.6-.3-2.5-.4zM41 3H1v2l2.1.2c1.6.3 2.7.9 3.4 1.8.7 1 1.1 2.6 1.2 4.8.8 10.8.8 20.9 0 30.2-.2 2.2-.6 3.8-1.2 4.8-.7 1-1.8 1.6-3.4 1.8l-2.1.3v2h25.8v-2l-2.7-.2a4.9 4.9 0 0 1-3.4-1.8c-.7-1-1.1-2.6-1.2-4.8-.3-4-.5-8.6-.5-13.7l5.4.1c2.9.1 4.9 2.3 5.9 6.7h2V18.9h-2c-1 4.3-2.9 6.5-5.9 6.6l-5.4.1c0-9 .2-15.4.5-19.3h7.9c5.6 0 9.4 3.6 11.6 10.8l2.4-.7L41 3zm-4.7 30.8c0 5.2 1.5 9.5 4.4 12.9 2.9 3.4 7.2 5 12.6 5s9.8-1.7 13-5.2c3.2-3.4 4.7-7.7 4.7-12.9s-1.5-9.5-4.4-12.9c-2.9-3.4-7.2-5-12.6-5s-9.8 1.7-13 5.2c-3.2 3.4-4.7 7.7-4.7 12.9zm22.3-11.4c1.2 2.9 1.7 6.7 1.7 11.3 0 10.6-2.2 15.8-6.5 15.8-2.2 0-3.9-1.5-5.1-4.5-1.2-3-1.7-6.8-1.7-11.3C47 23.2 49.2 18 53.5 18c2.2-.1 3.9 1.4 5.1 4.4zm84.5 24.3c3.3 3.3 7.5 5 12.5 5 3.1 0 5.8-.6 8.2-1.9 2.4-1.2 4.3-2.7 5.6-4.5l-1-1.2c-2.2 1.7-4.7 2.5-7.6 2.5-4 0-7.1-1.3-9.2-4-2.2-2.7-3.2-6.1-3-10.5H170c0-4.8-1.2-8.7-3.7-11.8-2.5-3-6-4.5-10.5-4.5-5.6 0-9.9 1.8-13 5.3-3.1 3.5-4.6 7.8-4.6 12.9 0 5.2 1.6 9.4 4.9 12.7zm7.4-25.1c1.1-2.4 2.5-3.6 4.4-3.6 3 0 4.5 3.8 4.5 11.5l-10.6.2c.1-3 .6-5.7 1.7-8.1zm46.4-4c-2.7-1.2-6.1-1.9-10.2-1.9-4.2 0-7.5 1.1-10 3.2s-3.8 4.7-3.8 7.8c0 2.7.8 4.8 2.3 6.3 1.5 1.5 3.9 2.8 7 3.9 2.8 1 4.8 2 5.8 2.9 1 1 1.6 2.1 1.6 3.6 0 1.4-.5 2.7-1.6 3.7-1 1.1-2.4 1.6-4.2 1.6-4.4 0-7.7-3.2-10-9.6l-1.7.5.4 10c3.6 1.4 7.6 2.1 12 2.1 4.6 0 8.1-1 10.7-3.1 2.6-2 3.9-4.9 3.9-8.5 0-2.4-.6-4.4-1.9-5.9-1.3-1.5-3.4-2.8-6.4-4-3.3-1.2-5.6-2.3-6.8-3.3-1.2-1-1.8-2.2-1.8-3.7s.4-2.7 1.3-3.7 2-1.4 3.4-1.4c4 0 6.9 2.9 8.7 8.6l1.7-.5-.4-8.6zm-96.2-.9c-1.4-.7-2.9-1-4.6-1-1.7 0-3.4.7-5.3 2.1-1.9 1.4-3.3 3.3-4.4 5.9l.1-8-15.2 3v1.4l1.5.1c1.9.2 3 1.7 3.2 4.4.6 6.2.6 12.8 0 19.8-.2 2.7-1.3 4.1-3.2 4.4l-1.5.2v1.9h21.2V49l-2.7-.2c-1.9-.2-3-1.7-3.2-4.4-.6-5.8-.7-12-.2-18.4.6-1 1.9-1.6 3.9-1.8 2-.2 4.3.4 6.7 1.8l3.7-9.3z"/></symbol>
+<symbol id="sym-toi" viewBox="0 0 323.419 22.677"><g fill="#1a1a1a">
+
+	<path d="M12.599,20.072c0,2.077,3.07,1.085,3.07,1.86c0,0.372-0.31,0.435-0.806,0.435c-1.457,0-2.264-0.063-4.124-0.063
+		s-2.666,0.063-4.124,0.063c-0.496,0-0.806-0.063-0.806-0.435c0-0.775,3.069,0.217,3.069-1.86L8.848,2.027
+		c-3.131,0-5.829,2.759-7.039,5.271C1.468,8.011,1.313,8.414,1.127,8.414c-0.217,0-0.279-0.124-0.279-0.248
+		c0-0.372,0.186-1.116,0.31-1.705L2.15,1.376c0.031-0.187,0.062-0.589,0.341-0.589c0.186,0,0.248,0.124,0.403,0.248
+		C3.081,1.159,3.36,1.283,4.011,1.283h13.425c0.651,0,0.931-0.124,1.116-0.248c0.155-0.124,0.217-0.248,0.403-0.248
+		c0.279,0,0.31,0.403,0.341,0.589l0.992,5.085c0.124,0.589,0.311,1.333,0.311,1.705c0,0.124-0.063,0.248-0.279,0.248
+		c-0.186,0-0.341-0.403-0.682-1.116c-1.209-2.512-3.907-5.271-7.039-5.271V20.072z"/>
+	<path d="M28.625,11.577v8.496c0,2.077,2.573,1.085,2.573,1.86c0,0.372-0.186,0.435-0.682,0.435c-1.085,0-1.891-0.063-3.751-0.063
+		s-2.667,0.063-3.752,0.063c-0.496,0-0.682-0.063-0.682-0.435c0-0.775,2.574,0.217,2.574-1.86V3.515c0-2.078-2.574-1.085-2.574-1.86
+		c0-0.372,0.186-0.434,0.682-0.434c1.085,0,1.892,0.062,3.752,0.062s2.666-0.062,3.751-0.062c0.496,0,0.682,0.062,0.682,0.434
+		c0,0.775-2.573-0.217-2.573,1.86v7.317h8.96V3.515c0-2.078-2.574-1.085-2.574-1.86c0-0.372,0.187-0.434,0.683-0.434
+		c1.085,0,1.891,0.062,3.751,0.062s2.667-0.062,3.751-0.062c0.496,0,0.683,0.062,0.683,0.434c0,0.775-2.574-0.217-2.574,1.86v16.557
+		c0,2.077,2.574,1.085,2.574,1.86c0,0.372-0.187,0.435-0.683,0.435c-1.085,0-1.891-0.063-3.751-0.063s-2.667,0.063-3.751,0.063
+		c-0.496,0-0.683-0.063-0.683-0.435c0-0.775,2.574,0.217,2.574-1.86v-8.496H28.625z"/>
+	<path d="M48.526,3.515c0-2.078-2.574-1.085-2.574-1.86c0-0.372,0.187-0.434,0.683-0.434c1.085,0,1.891,0.062,3.751,0.062
+		c6.852,0,9.147-0.062,11.379-0.062l1.488,5.798c0.093,0.403,0.186,0.651,0.186,0.807c0,0.217-0.062,0.31-0.248,0.31
+		c-0.372,0-0.279-0.775-1.798-2.945c-1.892-2.697-4.527-3.225-8.217-3.225h-0.93v9.116h0.682c2.667,0,4.682-1.054,4.682-4.186
+		c0-0.465,0.155-0.589,0.372-0.589c0.248,0,0.372,0.124,0.372,0.589v9.271c0,0.465-0.124,0.558-0.372,0.558
+		c-0.217,0-0.372-0.093-0.372-0.558c0-3.256-2.015-4.341-4.682-4.341h-0.682v8.062c0,1.178,0.744,1.736,2.604,1.736
+		c5.736,0,8.186-3.783,9.084-6.853c0.155-0.466,0.248-0.62,0.465-0.62s0.279,0.154,0.279,0.31c0,0.187,0,0.466-0.093,0.899
+		l-1.302,7.008c-2.574,0-5.209-0.063-12.898-0.063c-1.86,0-2.667,0.063-3.751,0.063c-0.496,0-0.683-0.063-0.683-0.435
+		c0-0.775,2.574,0.217,2.574-1.86V3.515z"/>
+	<path d="M86.936,20.072c0,2.077,3.07,1.085,3.07,1.86c0,0.372-0.31,0.435-0.806,0.435c-1.457,0-2.264-0.063-4.124-0.063
+		s-2.666,0.063-4.124,0.063c-0.496,0-0.806-0.063-0.806-0.435c0-0.775,3.069,0.217,3.069-1.86L83.185,2.027
+		c-3.131,0-5.829,2.759-7.039,5.271c-0.341,0.713-0.496,1.116-0.682,1.116c-0.217,0-0.279-0.124-0.279-0.248
+		c0-0.372,0.186-1.116,0.31-1.705l0.992-5.085c0.031-0.187,0.062-0.589,0.341-0.589c0.186,0,0.248,0.124,0.403,0.248
+		c0.186,0.124,0.465,0.248,1.116,0.248h13.425c0.651,0,0.931-0.124,1.116-0.248c0.155-0.124,0.217-0.248,0.403-0.248
+		c0.279,0,0.31,0.403,0.341,0.589l0.992,5.085c0.124,0.589,0.311,1.333,0.311,1.705c0,0.124-0.063,0.248-0.279,0.248
+		c-0.186,0-0.341-0.403-0.682-1.116c-1.209-2.512-3.907-5.271-7.039-5.271V20.072z"/>
+	<path d="M99.551,3.515c0-2.078-2.573-1.085-2.573-1.86c0-0.372,0.186-0.434,0.682-0.434c1.085,0,1.891,0.062,3.751,0.062
+		s2.667-0.062,3.752-0.062c0.496,0,0.682,0.062,0.682,0.434c0,0.775-2.574-0.217-2.574,1.86v16.557c0,2.077,2.574,1.085,2.574,1.86
+		c0,0.372-0.186,0.435-0.682,0.435c-1.085,0-1.892-0.063-3.752-0.063s-2.666,0.063-3.751,0.063c-0.496,0-0.682-0.063-0.682-0.435
+		c0-0.775,2.573,0.217,2.573-1.86V3.515z"/>
+	<path d="M120.726,17.127l6.666-15.844h1.427c1.86,0,2.666-0.062,3.751-0.062c0.496,0,0.682,0.062,0.682,0.434
+		c0,0.775-2.573-0.217-2.573,1.86v16.557c0,2.077,2.573,1.085,2.573,1.86c0,0.372-0.186,0.435-0.682,0.435
+		c-1.085,0-1.891-0.063-3.751-0.063s-2.667,0.063-3.752,0.063c-0.496,0-0.682-0.063-0.682-0.435c0-0.775,2.574,0.217,2.574-1.86
+		V3.949h-0.063l-7.224,17.704c-0.124,0.279-0.248,0.651-0.465,0.651c-0.155,0-0.279-0.311-0.403-0.651l-7.069-17.456h-0.062v12.991
+		c0,2.636,0.899,3.907,2.077,4.279c0.807,0.248,1.179,0.124,1.179,0.558c0,0.279-0.187,0.342-0.683,0.342
+		c-0.868,0-1.705-0.063-2.945-0.063c-1.922,0-2.729,0.063-3.287,0.063c-0.434,0-0.713-0.031-0.713-0.311
+		c0-0.496,0.341-0.341,1.147-0.589c2.201-0.62,2.48-3.039,2.48-6.79V4.197c0-2.76-3.193-1.768-3.193-2.542
+		c0-0.372,0.186-0.434,0.682-0.434c1.085,0,1.892,0.062,3.752,0.062h1.984L120.726,17.127z"/>
+	<path d="M137.774,3.515c0-2.078-2.574-1.085-2.574-1.86c0-0.372,0.187-0.434,0.683-0.434c1.085,0,1.891,0.062,3.751,0.062
+		c6.852,0,9.147-0.062,11.379-0.062l1.488,5.798c0.093,0.403,0.186,0.651,0.186,0.807c0,0.217-0.062,0.31-0.248,0.31
+		c-0.372,0-0.279-0.775-1.798-2.945c-1.892-2.697-4.527-3.225-8.217-3.225h-0.93v9.116h0.682c2.667,0,4.682-1.054,4.682-4.186
+		c0-0.465,0.155-0.589,0.372-0.589c0.248,0,0.372,0.124,0.372,0.589v9.271c0,0.465-0.124,0.558-0.372,0.558
+		c-0.217,0-0.372-0.093-0.372-0.558c0-3.256-2.015-4.341-4.682-4.341h-0.682v8.062c0,1.178,0.744,1.736,2.604,1.736
+		c5.736,0,8.186-3.783,9.084-6.853c0.155-0.466,0.248-0.62,0.465-0.62s0.279,0.154,0.279,0.31c0,0.187,0,0.466-0.093,0.899
+		l-1.302,7.008c-2.574,0-5.209-0.063-12.898-0.063c-1.86,0-2.667,0.063-3.751,0.063c-0.496,0-0.683-0.063-0.683-0.435
+		c0-0.775,2.574,0.217,2.574-1.86V3.515z"/>
+	<path d="M156.653,13.778c0-0.279,0.155-0.372,0.31-0.372c0.279,0,0.341,0.248,0.434,0.93c0.527,3.814,2.17,7.721,6.263,7.721
+		c3.102,0,4.496-1.86,4.496-3.969c0-6.263-11.503-3.721-11.503-11.348c0-3.225,2.977-5.953,6.511-5.953
+		c2.76,0,3.814,1.24,5.023,1.24c0.899,0,0.496-0.992,1.085-0.992c0.218,0,0.279,0.124,0.311,0.465
+		c0.403,4.341,0.526,6.48,0.526,6.883c0,0.311-0.154,0.435-0.341,0.435c-0.248,0-0.31-0.403-0.403-0.744
+		c-1.054-3.535-2.729-6.542-6.231-6.542c-2.356,0-3.752,1.395-3.752,3.349c0,5.705,11.503,3.783,11.503,11.317
+		c0,3.287-2.356,6.604-7.41,6.604c-2.264,0-4.341-1.178-5.147-1.178c-1.271,0-0.806,1.054-1.395,1.054
+		c-0.124,0-0.279-0.062-0.279-0.372V13.778z"/>
+	<path d="M204.396,11.794c0,6.945-5.891,11.007-11.131,11.007s-11.131-4.062-11.131-11.007s5.891-11.007,11.131-11.007
+		S204.396,4.849,204.396,11.794z M193.265,1.531c-4.062,0-7.038,3.255-7.038,10.263c0,7.007,2.977,10.263,7.038,10.263
+		s7.038-3.256,7.038-10.263C200.303,4.786,197.327,1.531,193.265,1.531z"/>
+	<path d="M209.258,3.515c0-2.078-2.573-1.085-2.573-1.86c0-0.372,0.187-0.434,0.683-0.434c1.085,0,1.891,0.062,3.752,0.062
+		c6.852,0,9.146-0.062,11.131-0.062l1.488,5.798c0.093,0.403,0.186,0.651,0.186,0.807c0,0.217-0.062,0.31-0.248,0.31
+		c-0.372,0-0.279-0.775-1.798-2.945c-1.892-2.697-4.527-3.225-8.217-3.225h-0.683v9.116h0.683c2.667,0,4.682-1.054,4.682-4.186
+		c0-0.465,0.155-0.589,0.372-0.589c0.248,0,0.372,0.124,0.372,0.589v9.271c0,0.465-0.124,0.558-0.372,0.558
+		c-0.217,0-0.372-0.093-0.372-0.558c0-3.256-2.015-4.341-4.682-4.341h-0.683v8.248c0,2.077,2.574,1.085,2.574,1.86
+		c0,0.372-0.187,0.435-0.683,0.435c-1.085,0-1.892-0.063-3.751-0.063c-1.861,0-2.667,0.063-3.752,0.063
+		c-0.496,0-0.683-0.063-0.683-0.435c0-0.775,2.573,0.217,2.573-1.86V3.515z"/>
+	<path d="M237.314,3.515c0-2.078-2.573-1.085-2.573-1.86c0-0.372,0.186-0.434,0.682-0.434c1.085,0,1.892,0.062,3.752,0.062
+		s2.666-0.062,3.752-0.062c0.496,0,0.682,0.062,0.682,0.434c0,0.775-2.573-0.217-2.573,1.86v16.557c0,2.077,2.573,1.085,2.573,1.86
+		c0,0.372-0.186,0.435-0.682,0.435c-1.086,0-1.892-0.063-3.752-0.063s-2.667,0.063-3.752,0.063c-0.496,0-0.682-0.063-0.682-0.435
+		c0-0.775,2.573,0.217,2.573-1.86V3.515z"/>
+	<path d="M262.488,6.398c0-2.635-1.147-3.906-2.325-4.278c-0.807-0.248-1.178-0.124-1.178-0.559c0-0.279,0.186-0.341,0.682-0.341
+		c1.116,0,1.953,0.062,3.256,0.062c1.302,0,2.139-0.062,3.256-0.062c0.496,0,0.682,0.062,0.682,0.341
+		c0,0.435-0.372,0.311-1.178,0.559c-1.179,0.372-2.326,1.643-2.326,4.278v15.969c0,0.217-0.124,0.434-0.372,0.434
+		c-0.217,0-0.465-0.093-0.62-0.311L249.217,5.003h-0.062v12.185c0,2.636,1.147,3.907,2.325,4.279
+		c0.807,0.248,1.178,0.124,1.178,0.558c0,0.279-0.186,0.342-0.682,0.342c-1.116,0-1.953-0.063-3.256-0.063
+		c-1.302,0-2.139,0.063-3.256,0.063c-0.496,0-0.682-0.063-0.682-0.342c0-0.434,0.372-0.31,1.178-0.558
+		c1.179-0.372,2.326-1.644,2.326-4.279V3.918c-1.799-2.573-3.473-1.674-3.473-2.263c0-0.341,0.217-0.434,0.682-0.434
+		c0.744,0,1.364,0.062,2.356,0.062h2.884l11.689,15.689h0.062V6.398z"/>
+	<path d="M270.391,3.515c0-2.078-2.574-1.085-2.574-1.86c0-0.372,0.187-0.434,0.683-0.434c1.085,0,1.892,0.062,3.751,0.062
+		c1.271,0,2.698-0.062,4.403-0.062c7.349,0,11.845,4.31,11.845,10.666c0,5.798-3.566,10.48-10.543,10.48
+		c-2.077,0-3.875-0.063-5.705-0.063c-1.859,0-2.666,0.063-3.751,0.063c-0.496,0-0.683-0.063-0.683-0.435
+		c0-0.775,2.574,0.217,2.574-1.86V3.515z M274.112,18.832c0,1.984,1.146,2.791,3.379,2.791c3.535,0,6.914-1.613,6.914-9.52
+		c0-5.922-2.355-10.139-7.1-10.139h-3.193V18.832z"/>
+	<path d="M293.579,3.515c0-2.078-2.574-1.085-2.574-1.86c0-0.372,0.187-0.434,0.683-0.434c1.085,0,1.892,0.062,3.752,0.062
+		s2.666-0.062,3.751-0.062c0.496,0,0.683,0.062,0.683,0.434c0,0.775-2.573-0.217-2.573,1.86v16.557c0,2.077,2.573,1.085,2.573,1.86
+		c0,0.372-0.187,0.435-0.683,0.435c-1.085,0-1.891-0.063-3.751-0.063s-2.667,0.063-3.752,0.063c-0.496,0-0.683-0.063-0.683-0.435
+		c0-0.775,2.574,0.217,2.574-1.86V3.515z"/>
+	<path d="M306.877,14.739c-0.837,2.388-1.24,3.286-1.24,4.186c0,3.101,2.573,2.356,2.573,3.101c0,0.342-0.155,0.342-0.496,0.342
+		c-0.651,0-1.396-0.063-3.503-0.063c-1.023,0-2.016,0.063-3.132,0.063c-0.311,0-0.403-0.125-0.403-0.373
+		c0-0.558,1.209-0.248,2.077-0.992c0.807-0.682,1.829-2.325,2.667-4.434c3.721-9.302,4.248-10.449,4.248-10.697
+		c0-0.217-0.744-0.806-0.744-1.178c0-0.465,0.526-0.403,1.395-2.232c0.651-1.364,0.496-1.798,0.899-1.798s0.372,1.023,2.232,5.116
+		l6.604,14.604c0.837,1.829,2.294,0.93,2.294,1.611c0,0.342-0.217,0.373-0.526,0.373c-1.24,0-2.48-0.063-3.721-0.063
+		s-2.45,0.063-3.721,0.063c-0.311,0-0.496-0.094-0.496-0.373c0-0.774,2.17,0.125,2.17-1.55c0-0.279-0.311-1.209-0.527-1.675
+		l-1.768-4.03H306.877z M310.102,6.368l-2.914,7.627h6.263L310.102,6.368z"/>
+
+</g></symbol>
 <symbol id="sym-iet" viewBox="0 0 375.26706 196.08092"><g transform="matrix(0.1,0,0,-0.1,-11.732954,298.06817)" fill="#000000"><path d="m 220,2000 v -880 h 195 195 v 880 880 H 415 220 Z"/><path d="m 920,2683 v -198 l 657,1 658,2 -1,33 c -1,19 -2,107 -3,197 l -1,162 H 1575 920 Z"/><path d="m 2450,2683 v -198 h 227 228 l 3,-682 2,-683 h 200 200 l 2,683 3,682 h 228 227 v 198 197 h -660 -660 z"/><path d="m 924,2187 c -2,-7 -3,-96 -2,-197 l 3,-185 653,-3 652,-2 v 200 200 h -650 c -520,0 -652,-3 -656,-13 z"/><path d="m 920,1315 v -195 h 655 655 v 195 195 H 1575 920 Z"/></g><rect fill="#964f9f" width="130.8362" height="40.089458" x="80.423912" y="78.023453"/><rect fill="#964f9f" width="131.18079" height="39.016739" x="80.125504" y="147.04164"/><rect fill="#53264d" width="131.62102" height="39.611885" x="80.162025" y="10.054482"/><rect fill="#53264d" width="39.337902" height="176.08093" x="10" y="10"/><rect fill="#53264d" width="131.97598" height="39.567627" x="233.27483" y="10.017326"/><rect fill="#53264d" width="40.929657" height="138.72092" x="278.76959" y="47.337208"/></symbol>
 <symbol id="sym-ieee" viewBox="0 0 24 24"><path fill="#00629B" d="M4.74 14.973h-.05v-.064h.04c.022 0 .051.002.051.03 0 .028-.015.034-.04.034zm.101-.03c0-.06-.04-.079-.109-.079h-.099v.265h.057v-.111h.027l.061.111h.068l-.069-.116c.036-.003.064-.02.064-.07zm-.11.243c-.098 0-.176-.076-.176-.19 0-.113.078-.188.176-.188.095 0 .177.075.177.188 0 .114-.082.19-.177.19zm-.247-.19c0 .156.116.247.247.247.13 0 .247-.09.247-.247a.238.238 0 0 0-.247-.246.239.239 0 0 0-.247.246zM3.35 12.61c-.02.374-.025.72-.052 1.096.148.013.315.026.473.003l-.047-1.046-.009-.05c-.12.005-.234.01-.365-.003zm-.926-1.051c-.182.091-.45.23-.421.48.04.136.187.224.304.28.647.286 1.506.295 2.19.083.168-.065.395-.16.426-.366-.002-.171-.183-.279-.313-.344v-.008a.575.575 0 0 1 .144-.039v-.004c-.228-.041-.45-.101-.671-.16.043.097.073.2.109.301.067-.021.135-.038.207-.047.117.045.284.11.3.256.014.137-.136.204-.23.26-.501.181-1.065.2-1.588.06-.144-.045-.353-.103-.37-.287.102-.242.367-.292.588-.351-.114-.073-.23-.138-.34-.22-.119.007-.227.059-.335.106zm1.107-1.46l-.064.208-.326.932c.082.008.183 0 .263.008v.008l-.048 1.054.008.01c.104.01.234.016.34-.002V12.3l-.042-1.022.006-.035.286-.004a46.727 46.727 0 0 1-.414-1.14zm-.15-.469c.239-.163.453.065.639.195.717.578 1.393 1.238 1.909 1.984.065.096.094.246.036.355-.134.223-.314.426-.485.633v.011c-.426.454-.876.92-1.363 1.305-.237.144-.455.46-.761.264a11.007 11.007 0 0 1-1.927-1.82c-.096-.149-.246-.271-.312-.44-.093-.23.112-.394.229-.566.576-.71 1.291-1.407 2.034-1.92zm.6-.678l-.266-.376c-.032-.02-.073-.052-.108-.062-.079-.034-.163.007-.227.056l-.48.624c-.769.953-1.68 1.843-2.673 2.525-.079.061-.195.121-.22.222-.026.091.022.166.078.223a13.061 13.061 0 0 1 2.234 1.94c.12.127.217.252.335.37.198.265.43.53.613.813.057.06.066.158.156.187.07.024.156.04.223 0l.066-.067a13.269 13.269 0 0 1 3.034-3.06c.117-.103.34-.142.343-.336a.308.308 0 0 0-.137-.226l-.02-.003c-.6-.408-1.159-.87-1.686-1.394l-.582-.609a16.595 16.595 0 0 1-.684-.827zm.039.672c.206.157.42.336.61.518l.034.02a10.122 10.122 0 0 1 1.405 1.592c.065.1.122.212.086.343-.133.332-.403.597-.639.887-.51.55-1.05 1.081-1.652 1.506-.122.086-.287.166-.433.097-.444-.232-.818-.613-1.207-.96-.45-.417-.902-.904-1.244-1.413a.417.417 0 0 1-.064-.253c.044-.176.165-.32.279-.469.403-.514.897-1.002 1.397-1.447.011-.012.032-.036.05-.047.215-.186.428-.35.652-.511.234-.182.529-.031.726.137zm15.942-.197H24v1.028h-2.569v1.094h2.364v1.028H21.43V13.7H24v1.028h-4.038zm-4.859 0h4.037v1.028h-2.57v1.094h2.363v1.028H16.57V13.7h2.569v1.028h-4.037zm-4.86 0h4.037v1.028h-2.57v1.094h2.365v1.028H11.71V13.7h2.57v1.028h-4.038zm-2.24 0h1.469v5.301H8.004Z"/></symbol>
 <symbol id="sym-acm" viewBox="0 0 24 24"><path fill="#0085CA" d="M7.435 12.25c-.08.025-.15.072-.202.135-.048.072-.073.158-.07.245 0 .15.038.252.12.308.077.056.194.082.352.082.087 0 .174-.02.264-.06.09-.038.174-.095.245-.165v-.66c-.168.015-.303.03-.405.045-.105.01-.207.034-.305.07zM12 0L0 12l12 12 12-12L12 0zm0 19.357C7.938 19.355 4.645 16.063 4.643 12 4.645 7.938 7.938 4.644 12 4.642c4.063.002 7.355 3.295 7.357 7.358-.002 4.063-3.294 7.355-7.357 7.357zM12 5.377v.002c-3.654 0-6.62 2.966-6.62 6.62s2.966 6.62 6.62 6.62 6.62-2.966 6.62-6.62c0-3.656-2.964-6.62-6.62-6.623zm-2.862 8.246h-.995v-.336l-.182.154c-.142.108-.304.188-.477.233-.082.02-.202.035-.352.035-.262.007-.515-.097-.698-.285-.187-.19-.277-.426-.277-.716 0-.238.046-.427.14-.574.1-.15.24-.27.405-.348.205-.09.423-.152.646-.18.25-.033.516-.06.803-.078v-.017c0-.176-.066-.297-.196-.363-.13-.07-.322-.102-.58-.102-.117 0-.254.02-.41.063-.158.044-.308.1-.458.164H6.42v-.77c.097-.03.256-.062.48-.1.217-.04.438-.06.663-.06.55 0 .95.092 1.2.276.25.183.375.462.375.837v2.168zm3.22-.167c-.07.028-.134.056-.2.086-.074.03-.15.058-.23.08-.094.024-.186.044-.27.06-.084.014-.196.022-.336.022-.263 0-.506-.033-.723-.1-.21-.062-.406-.165-.57-.307-.163-.142-.292-.32-.373-.52-.09-.21-.135-.457-.135-.738-.008-.27.042-.535.146-.78.09-.204.224-.384.392-.53.165-.134.355-.233.56-.29.22-.066.447-.096.675-.096.37 0 .732.087 1.06.255v.854h-.127c-.048-.043-.096-.085-.147-.124-.06-.048-.122-.09-.188-.126-.167-.095-.357-.144-.55-.14-.254 0-.45.086-.59.263-.138.177-.21.414-.21.714 0 .32.075.56.225.715.15.157.347.235.592.235.11 0 .222-.013.33-.042.153-.043.295-.12.415-.225.048-.04.088-.082.123-.11h.13v.843zm4.333.173v-1.597c0-.157 0-.29-.007-.397-.002-.09-.02-.18-.052-.263-.023-.066-.07-.12-.13-.15-.153-.064-.325-.063-.478.002-.086.04-.168.087-.244.14v2.263h-.993v-1.595c0-.156-.003-.286-.01-.396-.003-.09-.02-.18-.05-.264-.027-.066-.076-.12-.136-.15-.06-.033-.145-.048-.25-.048-.083 0-.165.02-.24.056-.078.04-.152.086-.228.136v2.262h-.995V10.44h.993v.356c.144-.125.296-.233.46-.323.148-.08.314-.12.484-.12.182-.004.36.045.514.14.153.1.27.244.34.414.19-.177.37-.314.54-.41.17-.096.34-.145.515-.145.136-.002.27.023.396.075.115.044.22.116.3.21.09.106.16.23.2.364.045.142.066.328.066.553v2.076h-.995z"/></symbol>
@@ -813,6 +954,9 @@
     <!-- Right cluster: Get in Touch · theme toggle · Book button -->
     <div class="nav-extras">
       <a href="#contact" class="nav-cta-pill">Get in Touch</a>
+      <button class="theme-toggle" id="searchTrigger" aria-label="Search" title="Search (Ctrl/Cmd+K)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light / dark mode">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -826,6 +970,18 @@
     </div>
   </div>
 </nav>
+
+<!-- Command-K quick jump -->
+<div class="cmdk-overlay" id="cmdkOverlay">
+  <div class="cmdk-box" role="dialog" aria-modal="true" aria-label="Quick jump search">
+    <div class="cmdk-input-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="cmdkInput" class="cmdk-input" placeholder="Jump to a talk, paper, hackathon, article…" autocomplete="off">
+      <kbd class="cmdk-esc">Esc</kbd>
+    </div>
+    <div class="cmdk-results" id="cmdkResults"></div>
+  </div>
+</div>
 
 <!-- ============================================================ HOME ============================================================ -->
 <section id="home">
@@ -853,6 +1009,12 @@
         <p class="hero-bio">
           I work at the intersection of enterprise CPQ and applied AI. My research focuses on token optimization, sandboxed LLMs for secure environments, and CO2-aware inference. I ship systems that move business numbers: 50% faster contract creation at T-Mobile, 95% ML extraction accuracy across a $40B contract portfolio at Amazon.
         </p>
+
+        <div class="upcoming-pill" id="upcomingPill" style="display:none;">
+          <span class="upcoming-dot"></span>
+          <span class="upcoming-label">Upcoming</span>
+          <span class="upcoming-text" id="upcomingText"></span>
+        </div>
 
         <div class="hero-stats">
           <div class="stat"><div class="stat-number" data-counter data-target="15" data-suffix="+" data-final="15+">15+</div><div class="stat-label">Years in Enterprise Tech</div></div>
@@ -890,6 +1052,15 @@
               <a href="https://www.amgen.com" target="_blank" rel="noopener noreferrer" class="employer-logo-item emp-chip" title="Amgen" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 166.864 42.687" width="86" height="22" role="img" aria-label="Amgen logo"><use href="#sym-amgen"/></svg></a>
               <a href="https://www.usc.edu" target="_blank" rel="noopener noreferrer" class="employer-logo-item emp-chip" title="University of Southern California" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 122.28125 182" width="23" height="34" role="img" aria-label="University of Southern California logo"><use href="#sym-usc"/></svg></a>
             </div>
+          </div>
+        </div>
+
+        <div class="press-strip">
+          <div class="press-strip-label">as seen in</div>
+          <div class="press-logo-row">
+            <a href="https://timesofindia.indiatimes.com/education/news/strong-cpq-and-contract-data-are-key-to-unlocking-agentic-ai-says-tech-leader-eshaan-jain/articleshow/131582299.cms" target="_blank" rel="noopener noreferrer" class="press-logo-item" title="Times of India"><svg viewBox="0 0 323.419 22.677" width="90" height="16" role="img" aria-label="Times of India logo"><use href="#sym-toi"/></svg></a>
+            <a href="https://aijourn.com/beyond-productivity-how-enterprise-ai-can-protect-revenue-and-reduce-contract-risk/" target="_blank" rel="noopener noreferrer" class="press-logo-item" title="AI Journal"><img src="https://aijourn.com/wp-content/uploads/2024/06/Screenshot-2024-06-01-at-14.53.04.png" alt="AI Journal logo" width="90" height="20" style="object-fit:contain;" loading="lazy"></a>
+            <a href="https://councils.forbes.com/u/5b5910f7-4242-4f6c-a051-ac0daefb4b57" target="_blank" rel="noopener noreferrer" class="press-logo-item" title="Forbes Technology Council"><svg viewBox="0 0 200 54" width="70" height="19" role="img" aria-label="Forbes logo" style="color:#000000;"><use href="#sym-forbes"/></svg></a>
           </div>
         </div>
 
@@ -1314,18 +1485,30 @@
     <div class="section-header">
       <h2 class="section-title">Peer Review, TPC &amp; Judging</h2>
     </div>
+    <div class="judging-filter-row" id="judgingFilterRow">
+      <button type="button" class="judging-filter-chip active" data-filter="all">All</button>
+      <button type="button" class="judging-filter-chip" data-filter="hackathons">Hackathons</button>
+      <button type="button" class="judging-filter-chip" data-filter="peer-review">Peer Review</button>
+      <button type="button" class="judging-filter-chip" data-filter="tpc">TPC Roles</button>
+    </div>
     <!-- Group 1: Hackathons -->
-    <div class="tab-group-label">Hackathons</div>
-    <div class="hackathon-tile-grid" id="hackathonsGrid"></div>
+    <div class="judging-group" data-group="hackathons">
+      <div class="tab-group-label">Hackathons</div>
+      <div class="hackathon-tile-grid" id="hackathonsGrid"></div>
+    </div>
     <!-- Group 2: Peer-Reviewer -->
-    <div class="tab-group-label" style="margin-top:36px;">Peer Review</div>
-    <div class="memberships-grid" id="peerReviewGrid"></div>
+    <div class="judging-group" data-group="peer-review">
+      <div class="tab-group-label" style="margin-top:36px;">Peer Review</div>
+      <div class="memberships-grid" id="peerReviewGrid"></div>
+    </div>
     <!-- Group 3: TPC -->
-    <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Member Roles · Main Tracks</div>
-    <div class="memberships-grid" id="tpcMainGrid"></div>
-    <!-- Group 4: TPC Workshop -->
-    <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Reviewer &amp; Workshop Roles</div>
-    <div class="memberships-grid" id="tpcWorkshopGrid"></div>
+    <div class="judging-group" data-group="tpc">
+      <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Member Roles · Main Tracks</div>
+      <div class="memberships-grid" id="tpcMainGrid"></div>
+      <!-- Group 4: TPC Workshop -->
+      <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Reviewer &amp; Workshop Roles</div>
+      <div class="memberships-grid" id="tpcWorkshopGrid"></div>
+    </div>
   </div>
 </section>
 
@@ -1408,6 +1591,11 @@
             Book 30 Minutes →
           </a>
         </div>
+
+        <button type="button" class="btn btn-ghost btn-vcard" id="vcardBtn" onclick="downloadVCard()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Save My Contact
+        </button>
 
         <div class="contact-social-list">
 
@@ -1552,6 +1740,55 @@
 // Visitor opens their own Google Calendar, sees the 30-min slot pre-filled with Eshaan as a guest,
 // picks a time, and hits Save. Eshaan receives a calendar invite + email notification.
 const BOOK_URL = 'https://calendar.google.com/calendar/u/0/r/eventedit?text=30-Minute+Conversation+with+Eshaan+Jain&details=Advisory,+speaking,+AI+%2B+CPQ+strategy,+research+collaboration,+or+career+conversation.+%F0%9F%93%8D+Bellevue,+WA.+Open+to+global+video+calls.&guests=eshaanjain26%40gmail.com&duration=30';
+
+// UPCOMING - next confirmed engagement. Add future dates here; past ones auto-hide the pill.
+// endDate uses the last day of the engagement so the pill stays up through the event itself.
+const UPCOMING = [
+  { text: "Judging HackMIT 2026 — Sep 19–20, Cambridge, MA", endDate: "2026-09-20", url: "https://hackmit.org/" }
+];
+
+function renderUpcoming() {
+  const today = new Date();
+  const next = UPCOMING
+    .filter(u => new Date(u.endDate + 'T23:59:59') >= today)
+    .sort((a, b) => new Date(a.endDate) - new Date(b.endDate))[0];
+  if (!next) return;
+  const pill = document.getElementById('upcomingPill');
+  const text = document.getElementById('upcomingText');
+  text.textContent = next.text;
+  if (next.url) {
+    pill.style.cursor = 'pointer';
+    pill.onclick = () => window.open(next.url, '_blank', 'noopener,noreferrer');
+  }
+  pill.style.display = 'inline-flex';
+}
+
+// vCard download - no phone number included, since one has never been public on this site
+function downloadVCard() {
+  const lines = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'FN:Eshaan Jain',
+    'N:Jain;Eshaan;;;',
+    'TITLE:Lead Product Owner, Salesforce CPQ & CLM',
+    'ORG:Mphasis',
+    'EMAIL;TYPE=INTERNET:eshaanjain26@gmail.com',
+    'URL:https://www.eshaan-jain.com',
+    'URL:https://www.linkedin.com/in/eshaanjain26/',
+    'ADR;TYPE=WORK:;;;Bellevue;WA;;USA',
+    'NOTE:Enterprise AI \\& CPQ Leader',
+    'END:VCARD'
+  ];
+  const blob = new Blob([lines.join('\r\n')], { type: 'text/vcard;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Eshaan-Jain.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 // ==================================================================
 //  EXPERIENCE
@@ -2570,6 +2807,16 @@ function renderJudging() {
   renderJudgingCards('peerReviewGrid', JUDGING_PEER_REVIEW);
   renderJudgingCards('tpcMainGrid', JUDGING_TPC_MAIN);
   renderJudgingCards('tpcWorkshopGrid', JUDGING_TPC_WORKSHOP);
+
+  const filterRow = document.getElementById('judgingFilterRow');
+  const groups = document.querySelectorAll('.judging-group');
+  filterRow.addEventListener('click', e => {
+    const btn = e.target.closest('.judging-filter-chip');
+    if (!btn) return;
+    filterRow.querySelectorAll('.judging-filter-chip').forEach(c => c.classList.toggle('active', c === btn));
+    const filter = btn.dataset.filter;
+    groups.forEach(g => { g.hidden = filter !== 'all' && g.dataset.group !== filter; });
+  });
 }
 
 function renderMentorship() {
@@ -2934,6 +3181,102 @@ function initCounters() {
   document.querySelectorAll('[data-counter]').forEach(el => io.observe(el));
 }
 
+// ==================================================================
+//  COMMAND-K QUICK JUMP
+// ==================================================================
+function buildSearchIndex() {
+  const idx = [];
+  EXPERIENCE.forEach(e => idx.push({ title: e.role, meta: e.company + ' · Experience', section: 'experience' }));
+  RESEARCH_PUBLISHED.forEach(r => idx.push({ title: r.title, meta: r.venue + ' · Research', section: 'research' }));
+  PROJECTS.forEach(p => idx.push({ title: p.title, meta: 'Project', section: 'projects' }));
+  JUDGING_HACKATHONS.forEach(h => idx.push({ title: h.name, meta: 'Hackathon Judging', section: 'judging', url: h.url }));
+  JUDGING_PEER_REVIEW.forEach(j => idx.push({ title: j.name, meta: 'Peer Review', section: 'judging', url: j.url }));
+  JUDGING_TPC_MAIN.forEach(j => idx.push({ title: j.name, meta: 'TPC Role', section: 'judging', url: j.url }));
+  JUDGING_TPC_WORKSHOP.forEach(j => idx.push({ title: j.name, meta: 'TPC Role', section: 'judging', url: j.url }));
+  MENTORSHIP.forEach(m => idx.push({ title: m.title, meta: (m.org || 'Mentorship'), section: 'mentorship', url: m.url }));
+  SPEAKING.forEach(s => idx.push({ title: s.title, meta: s.venue + ' · Speaking', section: 'speaking', url: s.url }));
+  MEDIA.forEach(m => idx.push({ title: m.title, meta: m.platform + ' · Media', section: 'media', url: m.url }));
+  PUBLISHED_ARTICLES.forEach(p => idx.push({ title: p.title, meta: p.platform + ' · Article', section: 'publishedArticles', url: p.url }));
+  EDUCATION.forEach(e => idx.push({ title: e.degree, meta: e.school, section: 'education' }));
+  MEMBERSHIPS.forEach(m => idx.push({ title: m.name, meta: 'Membership', section: 'memberships', url: m.url }));
+  return idx;
+}
+
+(function() {
+  const overlay = document.getElementById('cmdkOverlay');
+  const input = document.getElementById('cmdkInput');
+  const resultsEl = document.getElementById('cmdkResults');
+  let index = [];
+  let results = [];
+  let activeIdx = 0;
+
+  function openCmdk() {
+    if (!index.length) index = buildSearchIndex();
+    overlay.classList.add('open');
+    input.value = '';
+    input.focus();
+    renderResults('');
+  }
+  function closeCmdk() {
+    overlay.classList.remove('open');
+  }
+  function activate(item) {
+    closeCmdk();
+    if (item.url) {
+      window.open(item.url, '_blank', 'noopener,noreferrer');
+    } else if (item.section) {
+      const el = document.getElementById(item.section);
+      if (el) el.scrollIntoView();
+    }
+  }
+  function renderResults(query) {
+    const q = query.trim().toLowerCase();
+    results = !q ? [] : index.filter(i => i.title.toLowerCase().includes(q) || i.meta.toLowerCase().includes(q)).slice(0, 8);
+    activeIdx = 0;
+    if (!q) {
+      resultsEl.innerHTML = '<div class="cmdk-empty">Start typing to search talks, papers, hackathons, articles, and more.</div>';
+      return;
+    }
+    if (!results.length) {
+      resultsEl.innerHTML = '<div class="cmdk-empty">No matches.</div>';
+      return;
+    }
+    resultsEl.innerHTML = results.map((r, i) => `
+      <div class="cmdk-item${i === 0 ? ' active' : ''}" data-idx="${i}">
+        <span class="cmdk-item-title">${r.title}</span>
+        <span class="cmdk-item-meta">${r.meta}</span>
+      </div>`).join('');
+  }
+  function setActive(i) {
+    if (!results.length) return;
+    activeIdx = (i + results.length) % results.length;
+    resultsEl.querySelectorAll('.cmdk-item').forEach((el, idx) => el.classList.toggle('active', idx === activeIdx));
+    const activeEl = resultsEl.querySelector('.cmdk-item.active');
+    if (activeEl) activeEl.scrollIntoView({ block: 'nearest' });
+  }
+
+  document.getElementById('searchTrigger').addEventListener('click', openCmdk);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeCmdk(); });
+  input.addEventListener('input', () => renderResults(input.value));
+  resultsEl.addEventListener('click', e => {
+    const item = e.target.closest('.cmdk-item');
+    if (item) activate(results[Number(item.dataset.idx)]);
+  });
+  document.addEventListener('keydown', e => {
+    const isK = (e.key === 'k' || e.key === 'K');
+    if ((e.metaKey || e.ctrlKey) && isK) {
+      e.preventDefault();
+      overlay.classList.contains('open') ? closeCmdk() : openCmdk();
+      return;
+    }
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeCmdk();
+    else if (e.key === 'ArrowDown') { e.preventDefault(); setActive(activeIdx + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(activeIdx - 1); }
+    else if (e.key === 'Enter' && results[activeIdx]) { e.preventDefault(); activate(results[activeIdx]); }
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Wire booking URL to all book buttons
   ['bookBtn', 'bookCta'].forEach(id => {
@@ -2945,6 +3288,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderResearch();
   renderProjects();
   renderJudging();
+  renderUpcoming();
   renderMentorship();
   renderSpeaking();
   renderMedia();
