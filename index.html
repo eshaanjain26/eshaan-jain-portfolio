@@ -1318,7 +1318,7 @@
     <div class="tab-group-label">Hackathons</div>
     <div class="hackathon-tile-grid" id="hackathonsGrid"></div>
     <!-- Group 2: Peer-Reviewer -->
-    <div class="tab-group-label" style="margin-top:36px;">Current TPC &amp; Reviewing Leadership</div>
+    <div class="tab-group-label" style="margin-top:36px;">Peer Review</div>
     <div class="memberships-grid" id="peerReviewGrid"></div>
     <!-- Group 3: TPC -->
     <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Member Roles · Main Tracks</div>
@@ -1868,8 +1868,8 @@ const JUDGING_HACKATHONS = [
 const JUDGING_PEER_REVIEW = [
   {
     name: "ICML 2026 - AI4Math Workshop",
-    role: "Peer Reviewer", roleClass: "role-fellow",
-    description: "ICML is one of the top three machine learning conferences worldwide. Reviewing committee member for the 3rd AI for Math workshop at ICML 2026 in Seoul, which covers theorem proving and mathematical reasoning agents.",
+    role: "Area Chair", roleClass: "role-fellow",
+    description: "ICML is one of the top three machine learning conferences worldwide. Area Chair for the 3rd AI for Math workshop at ICML 2026 in Seoul, overseeing meta-reviews for the workshop's paper track on theorem proving and mathematical reasoning agents.",
     category: "Peer Review · ICML 2026", url: "https://ai4math2026.github.io/",
     iconBg: "#0a1a30", iconText: "ICML", iconTextColor: "#60a5fa"
   },
@@ -1907,6 +1907,69 @@ const JUDGING_PEER_REVIEW = [
     description: "EMNLP is a top-tier NLP conference; its 5th NLP for Positive Impact workshop in Budapest covers NLP applied to healthcare, education, climate, and inequality. Serving as a peer reviewer.",
     category: "Peer Review · EMNLP 2026", url: "https://sites.google.com/view/nlp4positiveimpact",
     iconBg: "#0a1a18", iconText: "NLP", iconTextColor: "#34d399"
+  },
+  {
+    name: "EMNLP 2026 - Industry Track",
+    role: "Reviewer", roleClass: "role-member",
+    description: "EMNLP's Industry Track reviews applied, production-facing NLP work. Reviewer for 5 submissions covering autonomous agents, tool-making LLMs, and traffic simulation systems.",
+    category: "Peer Review · EMNLP 2026", url: "https://2026.emnlp.org/",
+    iconBg: "#0a1a18", iconText: "EMN", iconTextColor: "#34d399"
+  },
+  {
+    name: "W-NUT 2026 @ EMNLP",
+    role: "Volunteer Reviewer", roleClass: "role-member",
+    description: "The 11th Workshop on Noisy User-generated Text at EMNLP 2026 studies NLP on real-world, imperfect text. Volunteer reviewer, drawing on production ML systems that process noisy user data at T-Mobile.",
+    category: "Peer Review · EMNLP 2026", url: "https://noisy-text.github.io/2026/",
+    iconBg: "#0a1a18", iconText: "WNT", iconTextColor: "#34d399"
+  },
+  {
+    name: "NLPCC 2026 Conference",
+    role: "Reviewer", roleClass: "role-member",
+    description: "NLPCC is a leading CCF-endorsed conference on natural language processing for the Chinese and Asia-Pacific NLP community. Reviewer for 3 submissions on citation grounding and radiology report generation.",
+    category: "Peer Review · NLPCC 2026", url: "https://www.nlpcc2026.org/",
+    iconBg: "#1a0a1a", iconText: "NLPCC", iconTextColor: "#f472b6"
+  },
+  {
+    name: "GlobalSouthAI Workshop @ IJCAI-ECAI 2026",
+    role: "Reviewer", roleClass: "role-member",
+    description: "GlobalSouthAI at the joint IJCAI-ECAI 2026 conference reviews AI research centering the Global South. Reviewer for the workshop's 50+ submissions, including work on carbon-aware LLM inference routing.",
+    category: "Peer Review · IJCAI-ECAI 2026", url: "https://ijcai-ecai26.org/",
+    iconBg: "#0a1a30", iconText: "IJCAI", iconTextColor: "#60a5fa"
+  },
+  {
+    name: "CDMRI'26 @ MICCAI",
+    role: "Reviewer", roleClass: "role-member",
+    description: "CDMRI is MICCAI's Computational Diffusion MRI workshop. Reviewer for 4 submissions on diffusion MRI fiber segmentation and quantitative neural network estimation.",
+    category: "Peer Review · MICCAI 2026", url: "https://www.cdmri.org/",
+    iconBg: "#1a0a30", iconText: "MIC", iconTextColor: "#c084fc"
+  },
+  {
+    name: "ACL Rolling Review - May 2026",
+    role: "Ethics Reviewer", roleClass: "role-member",
+    description: "ACL Rolling Review is the shared reviewing system feeding ACL, EMNLP, and NAACL. Ethics reviewer for a submission in the May 2026 cycle.",
+    category: "Peer Review · ACL 2026", url: "https://aclrollingreview.org/",
+    iconBg: "#0a1a30", iconText: "ACL", iconTextColor: "#7dd3fc"
+  },
+  {
+    name: "SeT-LLM Workshop @ KDD 2026",
+    role: "Reviewer", roleClass: "role-member",
+    description: "SeT-LLM is a KDD 2026 workshop on scalable and trustworthy LLMs. Reviewer, completing assigned reviews and volunteering for additional papers ahead of deadline.",
+    category: "Peer Review · KDD 2026", url: "https://kdd2026.kdd.org/",
+    iconBg: "#1a1200", iconText: "KDD", iconTextColor: "#fbbf24"
+  },
+  {
+    name: "FedKDD / FedMAS Workshop @ KDD 2026",
+    role: "Reviewer", roleClass: "role-member",
+    description: "FedKDD/FedMAS is a KDD 2026 workshop on federated learning and multi-agent systems. Reviewer for 3 submissions, including work on federated model architectures.",
+    category: "Peer Review · KDD 2026", url: "https://kdd2026.kdd.org/",
+    iconBg: "#1a1200", iconText: "KDD", iconTextColor: "#fbbf24"
+  },
+  {
+    name: "ICSC 2026",
+    role: "Program Committee Reviewer", roleClass: "role-member",
+    description: "ICSC is Oxford's International Conference on Social Computing, linking data-driven methods to social science theory. Program committee reviewer for the 2026 conference.",
+    category: "Peer Review · ICSC 2026", url: "https://icsc-conf.github.io/2026/index.html",
+    iconBg: "#0a1a2e", iconText: "ICSC", iconTextColor: "#38bdf8"
   }
 ];
 
