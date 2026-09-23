@@ -848,6 +848,114 @@
     @media (max-width: 900px) { .charts-grid { grid-template-columns: minmax(0, 1fr); } }
     .project-card-v2, .chart-card { min-width: 0; overflow-wrap: anywhere; }
     .chart-canvas-wrap canvas { max-width: 100%; }
+
+    /* Component display rules (grid/flex) otherwise beat the hidden attribute */
+    [hidden] { display: none !important; }
+
+    /* ── v4: at-a-glance explorer, case switcher, recognition hub, read-more ── */
+    .glance { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .glance-tabs { display: flex; gap: 4px; padding: 8px; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+    .glance-tab { flex: 0 0 auto; min-height: 44px; padding: 10px 18px; border-radius: 10px; border: 0; background: transparent; color: var(--text-muted); font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .glance-tab:hover { color: var(--text); background: var(--bg-hover); }
+    .glance-tab[aria-selected="true"] { color: #000; background: var(--accent); }
+    .glance-panel { padding: 28px; animation: glanceIn 0.25s ease-out; }
+    @keyframes glanceIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .impact-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    .impact-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .impact-tile { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 14px 16px; min-height: 76px; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: inherit; font: inherit; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.2s; }
+    .impact-tile:hover { border-color: var(--accent-dim); transform: translateY(-1px); }
+    .impact-tile[aria-selected="true"] { border-color: var(--accent); background: var(--tag-bg); }
+    .impact-val { font-size: 1.4rem; font-weight: 800; color: var(--accent); line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .impact-lbl { font-size: 0.78rem; color: var(--text-muted); }
+    .impact-story { position: sticky; top: 88px; padding: 24px; border-radius: 14px; background: var(--tag-bg); border: 1px solid var(--border); min-height: 260px; }
+    .impact-story-org { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-faint); }
+    .impact-story-val { font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1.05; margin-top: 8px; font-variant-numeric: tabular-nums; }
+    .impact-story-lbl { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+    .impact-story p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
+    .glance-more { display: inline-flex; align-items: center; min-height: 40px; margin-top: 14px; padding: 0; border: 0; background: none; color: var(--accent); font: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; text-align: left; }
+    .glance-more:hover { text-decoration: underline; }
+    .skills-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .skill-list { display: flex; flex-direction: column; gap: 14px; }
+    .skill-list .skill-fill, .goal-list .skill-fill { transition: width 0.6s cubic-bezier(.2,.8,.2,1); }
+    .radar-card .chart-canvas-wrap { height: 300px; }
+    .glance-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .glance-metric { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; }
+    .glance-metric-val { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .glance-metric-lbl { font-size: 0.74rem; color: var(--text-muted); }
+    .glance-table-wrap { overflow-x: auto; }
+    .glance-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    .glance-table th { text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .glance-table td { padding: 12px 10px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+    .glance-table td:nth-child(2) { color: var(--text); }
+    .glance-td-accent { color: var(--accent) !important; font-weight: 600; white-space: nowrap; }
+    .glance-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; background: var(--tag-bg); color: var(--text-muted); }
+    .glance-badge.is-new { background: rgba(124,58,237,0.14); color: #a78bfa; }
+    .glance-note { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; }
+    .goal-list { display: flex; flex-direction: column; gap: 18px; max-width: 640px; }
+
+    /* Affiliations: compact chips instead of an 11-card grid */
+    .affiliation-bar { margin-top: 36px; padding-top: 28px; }
+    .affiliation-grid { display: flex !important; flex-wrap: wrap; gap: 8px; }
+    .affiliation-card { padding: 6px 14px 6px 6px !important; border-radius: 100px; gap: 10px !important; }
+    .affiliation-logo { width: 32px !important; height: 32px !important; border-radius: 50%; }
+    .affiliation-info { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+    .affiliation-name { font-size: 0.8rem !important; }
+    .affiliation-role { margin-top: 0; }
+
+    /* Work: case-study switcher (list + detail on desktop, accordion on phones) */
+    .case-switcher { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); column-gap: 24px; row-gap: 8px; align-items: start; }
+    .case-tab { grid-column: 1; display: flex; gap: 14px; align-items: center; width: 100%; min-height: 64px; padding: 12px 16px; text-align: left; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: inherit; font: inherit; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .case-tab:hover { border-color: var(--accent-dim); }
+    .case-tab[aria-selected="true"] { border-color: var(--accent); background: var(--tag-bg); }
+    .case-tab-num { font-size: 0.8rem; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .case-tab-text { display: flex; flex-direction: column; min-width: 0; }
+    .case-tab-title { font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .case-tab-sub { font-size: 0.74rem; color: var(--text-faint); margin-top: 2px; }
+    .case-panel { grid-column: 2; grid-row: 1 / span var(--case-rows, 5); animation: glanceIn 0.25s ease-out; }
+
+    /* Recognition hub */
+    .hub-tabs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; }
+    .hub-tab { display: flex; flex-direction: column; gap: 4px; padding: 16px; min-height: 88px; text-align: left; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: inherit; font: inherit; cursor: pointer; transition: border-color 0.2s, transform 0.2s, background 0.2s; }
+    .hub-tab:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
+    .hub-tab[aria-selected="true"] { border-color: var(--accent); background: var(--tag-bg); box-shadow: inset 0 -3px 0 var(--accent); }
+    .hub-tab-n { font-size: 1.75rem; font-weight: 800; color: var(--accent); line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .hub-tab-l { font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
+    .hub-panel { animation: glanceIn 0.25s ease-out; }
+    #speakingGrid.is-folded .speak-item.beyond-fold { display: none; }
+
+    /* Read more */
+    .clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+    .clamp.is-open { display: block; -webkit-line-clamp: unset; }
+    .more-btn { align-self: flex-start; min-height: 32px; padding: 4px 0; border: 0; background: none; color: var(--accent); font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+    .more-btn:hover { text-decoration: underline; }
+    a.hackathon-tile-footer { color: var(--accent); }
+
+    @media (max-width: 1100px) {
+      .hub-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 900px) {
+      .impact-layout, .skills-layout { grid-template-columns: minmax(0, 1fr); }
+      .impact-story { position: static; min-height: 0; order: -1; }
+      .glance-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .case-switcher { grid-template-columns: minmax(0, 1fr); }
+      .case-panel { grid-column: 1; grid-row: auto; margin-bottom: 8px; }
+    }
+    @media (max-width: 640px) {
+      .section-header { margin-bottom: 24px; }
+      .glance-panel { padding: 18px; }
+      .glance-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .glance-tab { padding: 10px 4px; font-size: 0.8rem; }
+      .impact-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .impact-tile { padding: 10px 12px; min-height: 64px; }
+      .impact-val { font-size: 1.15rem; }
+      .impact-story-val { font-size: 2.2rem; }
+      .hub-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .hub-tab { padding: 12px; min-height: 72px; }
+      .hub-tab-n { font-size: 1.35rem; }
+      .hub-tab-l { font-size: 0.66rem; }
+      .glance-table th:nth-child(3), .glance-table td:nth-child(3) { display: none; }
+    }
     @media (max-width: 400px) {
       .nav-cta-pill { display: none; }
       .nav-logo { white-space: nowrap; }
@@ -992,9 +1100,9 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Work</a></li>
       <li><a href="#research">Research</a></li>
-      <li><a href="#judging">Recognition</a></li>
-      <li><a href="#speaking">Speaking</a></li>
+      <li><a href="#recognition">Recognition</a></li>
       <li><a href="#media">Writing</a></li>
       <!-- Mobile-only: real anchor for Get in Touch (hidden on desktop via CSS) -->
       <li class="nav-mobile-cta"><a href="#contact">Get in Touch</a></li>
@@ -1128,11 +1236,6 @@
 
     </div><!-- /hero-layout -->
 
-    <!-- SKILL MATRIX -->
-    <div class="skills-section">
-      <div class="skills-section-label">Core competencies</div>
-      <div class="skills-matrix" id="skillsMatrix"></div>
-    </div>
 
     <!-- AFFILIATIONS -->
     <div class="affiliation-bar">
@@ -1296,183 +1399,52 @@
 <!-- ============================================================ INSIGHTS / CHARTS ============================================================ -->
 <section id="insights">
   <div class="container">
-    <div class="section-header charts-header">
-      <h2 class="section-title">By the numbers</h2>
-      <span class="section-count">Interactive · based on verified metrics</span>
+    <div class="section-header">
+      <h2 class="section-title">At a glance</h2>
+      <span class="section-count">Pick a lens to explore</span>
     </div>
-    <!-- dyrt-style interactive dashboard widget -->
-    <div class="dashboard-widget reveal" id="dashboardWidget">
-      <div class="dw-tabs" id="dwTabs" role="tablist">
-        <button class="dw-tab active" data-panel="impact" role="tab" aria-selected="true">
-          <span class="dw-tab-dot"></span> CPQ Impact
-        </button>
-        <button class="dw-tab" data-panel="research" role="tab" aria-selected="false">
-          <span class="dw-tab-dot" style="background:#a78bfa;"></span> Research
-        </button>
-        <button class="dw-tab" data-panel="growth" role="tab" aria-selected="false">
-          <span class="dw-tab-dot" style="background:#f59e0b;"></span> Growth
-        </button>
+    <div class="glance reveal" id="glance">
+      <div class="glance-tabs" role="tablist" aria-label="At a glance">
+        <button type="button" role="tab" class="glance-tab" id="gt-impact" aria-controls="gp-impact" aria-selected="true">Impact</button>
+        <button type="button" role="tab" class="glance-tab" id="gt-skills" aria-controls="gp-skills" aria-selected="false" tabindex="-1">Skills</button>
+        <button type="button" role="tab" class="glance-tab" id="gt-research" aria-controls="gp-research" aria-selected="false" tabindex="-1">Research</button>
+        <button type="button" role="tab" class="glance-tab" id="gt-goals" aria-controls="gp-goals" aria-selected="false" tabindex="-1">2026 goals</button>
       </div>
-      <div class="dw-body">
 
-        <!-- Panel: CPQ Impact -->
-        <div class="dw-panel active" id="dw-impact">
-          <div class="dw-live-badge"><span class="dw-live-dot"></span> Verified · T-Mobile &amp; Amazon</div>
-          <div class="dw-metrics-row">
-            <div class="dw-metric">
-              <div class="dw-metric-val">55+</div>
-              <div class="dw-metric-lbl">Research Citations</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val">$40B+</div>
-              <div class="dw-metric-lbl">Contract Portfolio</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val">30K+</div>
-              <div class="dw-metric-lbl">LinkedIn Followers</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val">95%</div>
-              <div class="dw-metric-lbl">ML Accuracy</div>
-            </div>
+      <div class="glance-panel" role="tabpanel" id="gp-impact" aria-labelledby="gt-impact">
+        <div class="impact-layout">
+          <div class="impact-tiles" id="impactTiles" role="tablist" aria-label="Impact metrics" aria-orientation="vertical"></div>
+          <div class="impact-story" id="impactStory" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="glance-panel" role="tabpanel" id="gp-skills" aria-labelledby="gt-skills" hidden>
+        <div class="skills-layout">
+          <div>
+            <div class="chip-row" id="skillChips" role="tablist" aria-label="Skill domains"></div>
+            <div class="skill-list" id="skillList" aria-live="polite"></div>
           </div>
-          <div class="dw-bars">
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">CPQ Platform Adoption (20% → 80%)</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:80%;--bar-col:var(--accent)"></div></div>
-              <span class="dw-bar-val">80%</span>
-            </div>
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">ML Clause Extraction Accuracy</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:95%;--bar-col:#34d399"></div></div>
-              <span class="dw-bar-val">95%</span>
-            </div>
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">Contract Creation Speed Gain</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:50%;--bar-col:#60a5fa"></div></div>
-              <span class="dw-bar-val">50%</span>
-            </div>
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">Order Error Reduction</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:40%;--bar-col:#f59e0b"></div></div>
-              <span class="dw-bar-val">40%</span>
-            </div>
+          <div class="chart-card radar-card">
+            <div class="chart-card-title">Core competency radar</div>
+            <div class="chart-canvas-wrap"><canvas id="radarChart" role="img" aria-label="Radar chart of proficiency: Enterprise CPQ 95, AI and Agentic 87, Product Ownership 94, Research and Publishing 85, Cloud and Integration 82, Data and Analytics 85"></canvas></div>
           </div>
         </div>
+      </div>
 
-        <!-- Panel: Research -->
-        <div class="dw-panel" id="dw-research">
-          <div class="dw-live-badge"><span class="dw-live-dot" style="background:#a78bfa;"></span> Google Scholar · Verified</div>
-          <div class="dw-metrics-row">
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#a78bfa;">55+</div>
-              <div class="dw-metric-lbl">Citations</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#a78bfa;">3</div>
-              <div class="dw-metric-lbl">Published Papers</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#a78bfa;">IEEE+Elsevier</div>
-              <div class="dw-metric-lbl">Venues</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#a78bfa;">3</div>
-              <div class="dw-metric-lbl">Active Projects</div>
-            </div>
-          </div>
-          <table class="dw-table">
-            <thead><tr>
-              <th>Venue</th><th>Title</th><th>Status</th><th>Citations</th>
-            </tr></thead>
-            <tbody>
-              <tr>
-                <td class="dw-td-accent">IEEE 2017</td>
-                <td>Demand Forecasting via ML (Supply Chain)</td>
-                <td><span class="dw-td-badge">Published</span></td>
-                <td class="dw-td-purple">45+</td>
-              </tr>
-              <tr>
-                <td class="dw-td-accent">Elsevier 2018</td>
-                <td>Nature-Inspired Algorithms (Remote Sensing)</td>
-                <td><span class="dw-td-badge">Published</span></td>
-                <td class="dw-td-purple">10+</td>
-              </tr>
-              <tr>
-                <td class="dw-td-accent">2026</td>
-                <td>Token Optimization &amp; CO₂-Aware LLM Inference</td>
-                <td><span class="dw-td-badge active">In Progress</span></td>
-                <td class="dw-td-purple">n/a</td>
-              </tr>
-              <tr>
-                <td class="dw-td-accent">2026</td>
-                <td>Offline Sandboxed LLMs for Secure Academic Computing</td>
-                <td><span class="dw-td-badge active">In Progress</span></td>
-                <td class="dw-td-purple">n/a</td>
-              </tr>
-            </tbody>
+      <div class="glance-panel" role="tabpanel" id="gp-research" aria-labelledby="gt-research" hidden>
+        <div class="glance-metrics" id="researchMetrics"></div>
+        <div class="glance-table-wrap">
+          <table class="glance-table" id="researchTable">
+            <thead><tr><th scope="col">Venue</th><th scope="col">Title</th><th scope="col">Status</th><th scope="col">Citations</th></tr></thead>
+            <tbody></tbody>
           </table>
         </div>
+        <a class="glance-more" href="#research">All research and publications →</a>
+      </div>
 
-        <!-- Panel: Growth -->
-        <div class="dw-panel" id="dw-growth">
-          <div class="dw-live-badge"><span class="dw-live-dot" style="background:#f59e0b;"></span> 2026 Targets · EB-1A Track</div>
-          <div class="dw-metrics-row">
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#f59e0b;">30K+</div>
-              <div class="dw-metric-lbl">LinkedIn Followers</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#f59e0b;">12+</div>
-              <div class="dw-metric-lbl">Articles in 2026</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#f59e0b;">5×</div>
-              <div class="dw-metric-lbl">Salesforce Certified</div>
-            </div>
-            <div class="dw-metric">
-              <div class="dw-metric-val" style="color:#f59e0b;">15+</div>
-              <div class="dw-metric-lbl">Years Experience</div>
-            </div>
-          </div>
-          <div class="dw-bars">
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">LinkedIn to 50K target</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:60%;--bar-col:#f59e0b"></div></div>
-              <span class="dw-bar-val" style="color:#f59e0b;">30K</span>
-            </div>
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">EB-1A evidence completeness</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:72%;--bar-col:#a78bfa"></div></div>
-              <span class="dw-bar-val" style="color:#a78bfa;">72%</span>
-            </div>
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">Citation target (100+)</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:55%;--bar-col:var(--accent)"></div></div>
-              <span class="dw-bar-val">55+</span>
-            </div>
-            <div class="dw-bar-row">
-              <span class="dw-bar-lbl">2026 publishing goal (12 pieces)</span>
-              <div class="dw-bar-track"><div class="dw-bar-fill" style="--w:67%;--bar-col:#60a5fa"></div></div>
-              <span class="dw-bar-val" style="color:#60a5fa;">8/12</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div class="charts-grid">
-      <div class="chart-card reveal">
-        <div class="chart-card-title">Core Competency Radar</div>
-        <div class="chart-canvas-wrap"><canvas id="radarChart"></canvas></div>
-      </div>
-      <div class="chart-card reveal">
-        <div class="chart-card-title">Technology Proficiency</div>
-        <div class="chart-canvas-wrap"><canvas id="techChart"></canvas></div>
-      </div>
-      <div class="chart-card reveal">
-        <div class="chart-card-title">Career Impact Metrics</div>
-        <div class="chart-canvas-wrap"><canvas id="impactChart"></canvas></div>
+      <div class="glance-panel" role="tabpanel" id="gp-goals" aria-labelledby="gt-goals" hidden>
+        <p class="glance-note">Public targets for 2026, tracked against where things stand today.</p>
+        <div class="goal-list" id="goalList"></div>
       </div>
     </div>
   </div>
@@ -1489,6 +1461,17 @@
     <div class="exp-tab-nav" id="expTabNav" role="tablist" aria-label="Experience by employer"></div>
     <!-- Selected employer panel -->
     <div class="exp-panel-wrap" id="expPanelWrap" role="tabpanel"></div>
+  </div>
+</section>
+
+<!-- ============================================================ PROJECTS ============================================================ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Selected Work</h2>
+      <span class="section-count">Original contributions · pick a project</span>
+    </div>
+    <div class="case-switcher" id="projectsGrid"></div>
   </div>
 </section>
 
@@ -1516,69 +1499,37 @@
   </div>
 </section>
 
-<!-- ============================================================ PROJECTS ============================================================ -->
-<section id="projects">
+<!-- ============================================================ RECOGNITION HUB ============================================================ -->
+<section id="recognition">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Original Contributions</h2>
-      <span class="section-count">5 flagship projects</span>
+      <h2 class="section-title">Recognition</h2>
+      <span class="section-count">Talks, judging, reviewing, and service</span>
     </div>
-    <div class="projects-grid" id="projectsGrid"></div>
-  </div>
-</section>
+    <div class="hub-tabs" id="hubTabs" role="tablist" aria-label="Recognition categories"></div>
 
-<!-- ============================================================ JUDGING ============================================================ -->
-<section id="judging">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Peer Review, TPC &amp; Judging</h2>
+    <div class="hub-panel" role="tabpanel" id="speaking" aria-labelledby="ht-speaking">
+      <div class="judging-filter-row" id="speakingFilterRow" role="group" aria-label="Filter talks by format"></div>
+      <div id="speakingGrid"></div>
     </div>
-    <div class="recog-stats" id="recogStats"></div>
-    <div class="judging-filter-row" id="judgingFilterRow" role="group" aria-label="Filter judging and review roles">
-      <button type="button" class="judging-filter-chip active" data-filter="all" aria-pressed="true">All</button>
-      <button type="button" class="judging-filter-chip" data-filter="hackathons" aria-pressed="false">Hackathons</button>
-      <button type="button" class="judging-filter-chip" data-filter="peer-review" aria-pressed="false">Peer Review</button>
-      <button type="button" class="judging-filter-chip" data-filter="tpc" aria-pressed="false">TPC Roles</button>
-    </div>
-    <!-- Group 1: Hackathons -->
-    <div class="judging-group" data-group="hackathons">
-      <div class="tab-group-label">Hackathons</div>
+    <div class="hub-panel" role="tabpanel" id="hackathons" aria-labelledby="ht-hackathons" hidden>
       <div class="hackathon-tile-grid" id="hackathonsGrid"></div>
     </div>
-    <!-- Group 2: Peer-Reviewer -->
-    <div class="judging-group" data-group="peer-review">
-      <div class="tab-group-label" style="margin-top:36px;">Peer Review</div>
+    <div class="hub-panel" role="tabpanel" id="peer-review" aria-labelledby="ht-peer-review" hidden>
       <div class="memberships-grid" id="peerReviewGrid"></div>
     </div>
-    <!-- Group 3: TPC -->
-    <div class="judging-group" data-group="tpc">
-      <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Member Roles · Main Tracks</div>
+    <div class="hub-panel" role="tabpanel" id="committees" aria-labelledby="ht-committees" hidden>
+      <div class="tab-group-label">Main tracks</div>
       <div class="memberships-grid" id="tpcMainGrid"></div>
-      <!-- Group 4: TPC Workshop -->
-      <div class="tab-group-label" style="margin-top:36px;">Accepted TPC Reviewer &amp; Workshop Roles</div>
+      <div class="tab-group-label" style="margin-top:36px;">Specialized tracks &amp; workshops</div>
       <div class="memberships-grid" id="tpcWorkshopGrid"></div>
     </div>
-  </div>
-</section>
-
-<!-- ============================================================ MENTORSHIP ============================================================ -->
-<section id="mentorship">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Mentorship &amp; Advisory</h2>
+    <div class="hub-panel" role="tabpanel" id="mentorship" aria-labelledby="ht-mentorship" hidden>
+      <div class="memberships-grid" id="mentorshipGrid"></div>
     </div>
-    <div class="memberships-grid" id="mentorshipGrid"></div>
-  </div>
-</section>
-
-<!-- ============================================================ SPEAKING ============================================================ -->
-<section id="speaking">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Speaking &amp; Thought Leadership</h2>
+    <div class="hub-panel" role="tabpanel" id="memberships" aria-labelledby="ht-memberships" hidden>
+      <div class="memberships-grid" id="membershipsGrid"></div>
     </div>
-    <div class="judging-filter-row" id="speakingFilterRow" role="group" aria-label="Filter talks by format"></div>
-    <div id="speakingGrid"></div>
   </div>
 </section>
 
@@ -1586,32 +1537,11 @@
 <section id="media">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Media &amp; Publications</h2>
-      <span class="section-count">Featured articles &amp; coverage</span>
+      <h2 class="section-title">Writing &amp; Press</h2>
+      <span class="section-count">Bylines, expert panels, and coverage</span>
     </div>
+    <div class="judging-filter-row" id="writingFilterRow" role="group" aria-label="Filter writing by type"></div>
     <div class="media-grid" id="mediaGrid"></div>
-  </div>
-</section>
-
-<!-- ============================================================ PUBLISHED ARTICLES ============================================================ -->
-<section id="publishedArticles">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Published Articles</h2>
-      <span class="section-count">Bylines &amp; contributor features</span>
-    </div>
-    <div class="media-grid" id="publishedArticlesGrid"></div>
-  </div>
-</section>
-
-<!-- ============================================================ MEMBERSHIPS ============================================================ -->
-<section id="memberships">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Professional Memberships</h2>
-      <span class="section-count">11 organizations</span>
-    </div>
-    <div class="memberships-grid" id="membershipsGrid"></div>
   </div>
 </section>
 
@@ -2937,24 +2867,47 @@ function renderResearch() {
 }
 
 function renderProjects() {
-  document.getElementById('projectsGrid').innerHTML = PROJECTS.map(p => `
-    <div class="project-card-v2 reveal">
+  const host = document.getElementById('projectsGrid');
+  host.setAttribute('role', 'tablist');
+  host.setAttribute('aria-label', 'Projects');
+  host.setAttribute('aria-orientation', 'vertical');
+  host.style.setProperty('--case-rows', PROJECTS.length);
+  host.innerHTML = PROJECTS.map((p, i) => `
+    <button type="button" role="tab" class="case-tab${i === 0 ? ' active' : ''}" id="ct-${p.number}" aria-selected="${i === 0}" aria-controls="cp-${p.number}" tabindex="${i === 0 ? 0 : -1}" data-project="${p.number}">
+      <span class="case-tab-num">${p.number}</span>
+      <span class="case-tab-text">
+        <span class="case-tab-title">${p.title.split(' · ')[0]}</span>
+        <span class="case-tab-sub">${p.org} · ${p.year}</span>
+      </span>
+    </button>
+    <div class="case-panel project-card-v2" role="tabpanel" id="cp-${p.number}" aria-labelledby="ct-${p.number}"${i === 0 ? '' : ' hidden'}>
       <div class="project-card-top">
         <span class="project-num">${p.number}</span>
         <span class="project-status ${statusClass(p.status)}">${p.statusLabel}</span>
       </div>
       <div class="project-title-v2">${p.title}</div>
       <div class="project-tagline">${p.tagline}</div>
-      <p class="project-description-v2">${p.description}</p>
       <div class="project-metrics-row">
-        ${p.metrics.map(m=>`<div class="project-metric"><span class="project-metric-value">${m.value}</span><span class="project-metric-label">${m.label}</span></div>`).join('')}
+        ${p.metrics.map(m => `<div class="project-metric"><span class="project-metric-value">${m.value}</span><span class="project-metric-label">${m.label}</span></div>`).join('')}
       </div>
+      <p class="project-description-v2">${p.description}</p>
       <div class="project-contribution-v2">
         <div class="project-contribution-label">Original Contribution</div>
         <p>${p.contribution}</p>
       </div>
-      <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
     </div>`).join('');
+  wireTabs(host, tab => {
+    host.querySelectorAll('.case-panel').forEach(p => { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
+  });
+}
+
+function openProject(num) {
+  const tab = document.getElementById('ct-' + num);
+  if (!tab) return;
+  tab.click();
+  document.getElementById('projects').scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
+  tab.focus({ preventScroll: true });
 }
 
 function renderJudgingCards(gridId, items) {
@@ -2985,16 +2938,14 @@ function renderJudgingCards(gridId, items) {
 
 function renderHackathonTiles(gridId, items) {
   document.getElementById(gridId).innerHTML = items.map(h => {
-    const tag = h.url ? 'a' : 'div';
-    const linkAttrs = h.url ? `href="${h.url}" target="_blank" rel="noopener noreferrer"` : '';
     const metaBits = [h.dates, h.venue, h.participants, h.prize].filter(Boolean)
       .map(m => `<span>${m}</span>`).join('');
     const banner = h.logoUrl
-      ? `<img src="${h.logoUrl}" alt="${h.name} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      ? `<img src="${h.logoUrl}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
          <div class="hackathon-tile-fallback" style="display:none; background:${h.iconBg};">${h.initials}</div>`
       : `<div class="hackathon-tile-fallback" style="background:${h.iconBg};">${h.initials}</div>`;
     return `
-      <${tag} class="hackathon-tile reveal" ${linkAttrs}>
+      <div class="hackathon-tile reveal">
         <div class="hackathon-tile-banner">
           ${banner}
           <span class="hackathon-tile-badge judge-badge badge-confirmed">Judge</span>
@@ -3003,13 +2954,34 @@ function renderHackathonTiles(gridId, items) {
           <div class="hackathon-tile-name">${h.name}</div>
           <div class="hackathon-tile-meta">${metaBits}</div>
           <p class="hackathon-tile-desc">${h.description}</p>
-          ${h.url ? `<span class="hackathon-tile-footer">Visit event →</span>` : ''}
+          ${h.url ? `<a class="hackathon-tile-footer" href="${h.url}" target="_blank" rel="noopener noreferrer">Visit event →</a>` : ''}
         </div>
-      </${tag}>`;
+      </div>`;
   }).join('');
 }
 
 const COLLAPSED_LIMIT = 6;
+const CLAMP_MIN_CHARS = 110;
+
+function addReadMore(root) {
+  let n = 0;
+  root.querySelectorAll('#research .membership-desc, #recognition .membership-desc, #recognition .hackathon-tile-desc, #media .media-desc').forEach(p => {
+    if (p.dataset.clamp || p.textContent.trim().length < CLAMP_MIN_CHARS) return;
+    p.dataset.clamp = '1';
+    p.id = p.id || 'desc-' + (++n) + '-' + Math.random().toString(36).slice(2, 7);
+    p.classList.add('clamp');
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'more-btn';
+    btn.setAttribute('aria-controls', p.id); btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'More';
+    btn.addEventListener('click', () => {
+      const open = p.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Less' : 'More';
+    });
+    p.after(btn);
+  });
+}
 
 // Collapses a grid to its first COLLAPSED_LIMIT cards behind a "Show all" toggle
 function makeCollapsible(gridId, noun) {
@@ -3038,6 +3010,18 @@ function makeCollapsible(gridId, noun) {
   sync();
 }
 
+const HUB_TABS = [
+  { id: 'speaking',    label: 'Talks & sessions',     count: () => SPEAKING.length },
+  { id: 'hackathons',  label: 'Hackathons judged',    count: () => JUDGING_HACKATHONS.length },
+  { id: 'peer-review', label: 'Peer review roles',    count: () => JUDGING_PEER_REVIEW.length },
+  { id: 'committees',  label: 'Program committees',   count: () => JUDGING_TPC_MAIN.length + JUDGING_TPC_WORKSHOP.length },
+  { id: 'mentorship',  label: 'Mentorship & advisory', count: () => MENTORSHIP.length },
+  { id: 'memberships', label: 'Memberships',          count: () => MEMBERSHIPS.length }
+];
+// Old anchors (#judging) and search entries still land on the right tab
+const HUB_ALIASES = { judging: 'hackathons', publishedArticles: 'media' };
+let selectHubTab = null;
+
 function renderJudging() {
   renderHackathonTiles('hackathonsGrid', JUDGING_HACKATHONS);
   renderJudgingCards('peerReviewGrid', JUDGING_PEER_REVIEW);
@@ -3045,59 +3029,35 @@ function renderJudging() {
   renderJudgingCards('tpcWorkshopGrid', JUDGING_TPC_WORKSHOP);
   makeCollapsible('hackathonsGrid', 'hackathons');
   makeCollapsible('peerReviewGrid', 'peer review roles');
-  makeCollapsible('tpcMainGrid', 'TPC roles');
+  makeCollapsible('tpcMainGrid', 'committee roles');
   makeCollapsible('tpcWorkshopGrid', 'workshop roles');
+}
 
-  const tpcCount = JUDGING_TPC_MAIN.length + JUDGING_TPC_WORKSHOP.length;
-  const counts = { all: JUDGING_HACKATHONS.length + JUDGING_PEER_REVIEW.length + tpcCount,
-                   hackathons: JUDGING_HACKATHONS.length, 'peer-review': JUDGING_PEER_REVIEW.length, tpc: tpcCount };
-
-  const filterRow = document.getElementById('judgingFilterRow');
-  filterRow.querySelectorAll('.judging-filter-chip').forEach(c => {
-    c.insertAdjacentHTML('beforeend', ` <span class="chip-count">${counts[c.dataset.filter]}</span>`);
+function renderHub() {
+  const tabsEl = document.getElementById('hubTabs');
+  tabsEl.innerHTML = HUB_TABS.map((t, i) => `
+    <button type="button" role="tab" class="hub-tab${i === 0 ? ' active' : ''}" id="ht-${t.id}" aria-controls="${t.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">
+      <span class="hub-tab-n">${t.count()}</span>
+      <span class="hub-tab-l">${t.label}</span>
+    </button>`).join('');
+  selectHubTab = wireTabs(tabsEl, tab => {
+    document.querySelectorAll('#recognition .hub-panel').forEach(p => { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
+    // cards in a freshly shown panel should not wait on the scroll-reveal observer
+    document.getElementById(tab.getAttribute('aria-controls')).querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
   });
+  makeCollapsible('mentorshipGrid', 'mentorship roles');
+  makeCollapsible('membershipsGrid', 'memberships');
+}
 
-  const stats = [
-    { n: JUDGING_HACKATHONS.length, label: 'Hackathons judged', filter: 'hackathons' },
-    { n: JUDGING_PEER_REVIEW.length, label: 'Peer review roles', filter: 'peer-review' },
-    { n: tpcCount, label: 'TPC & workshop roles', filter: 'tpc' },
-    { n: SPEAKING.length, label: 'Talks & sessions', href: '#speaking' },
-    { n: MENTORSHIP.length, label: 'Mentorship & advisory', href: '#mentorship' }
-  ];
-  document.getElementById('recogStats').innerHTML = stats.map(st => st.href
-    ? `<a class="recog-stat" href="${st.href}"><span class="recog-stat-n">${st.n}</span><span class="recog-stat-l">${st.label}</span></a>`
-    : `<button type="button" class="recog-stat" data-filter="${st.filter}"><span class="recog-stat-n">${st.n}</span><span class="recog-stat-l">${st.label}</span></button>`
-  ).join('');
-
-  const groups = document.querySelectorAll('.judging-group');
-  const applyFilter = filter => {
-    filterRow.querySelectorAll('.judging-filter-chip').forEach(c => {
-      const on = c.dataset.filter === filter;
-      c.classList.toggle('active', on);
-      c.setAttribute('aria-pressed', String(on));
-    });
-    groups.forEach(g => {
-      const show = filter === 'all' || g.dataset.group === filter;
-      g.hidden = !show;
-      // A single-group view has room for everything, so drop the fold
-      if (show) g.querySelectorAll('[id$="Grid"]').forEach(grid => {
-        const btn = grid.nextElementSibling;
-        if (!btn || !btn.classList.contains('show-all-btn')) return;
-        const wantCollapsed = filter === 'all';
-        if (grid.classList.contains('is-collapsed') !== wantCollapsed) btn.click();
-      });
-    });
-  };
-  filterRow.addEventListener('click', e => {
-    const btn = e.target.closest('.judging-filter-chip');
-    if (btn) applyFilter(btn.dataset.filter);
-  });
-  document.getElementById('recogStats').addEventListener('click', e => {
-    const btn = e.target.closest('button.recog-stat');
-    if (!btn) return;
-    applyFilter(btn.dataset.filter);
-    filterRow.scrollIntoView({ block: 'start', behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
-  });
+// Scrolls to any id; opens the hub tab that contains it when needed
+function revealTarget(id) {
+  id = HUB_ALIASES[id] || id;
+  const el = document.getElementById(id);
+  if (!el) return false;
+  const panel = el.closest('.hub-panel');
+  if (panel && panel.hidden && selectHubTab) selectHubTab(document.getElementById('ht-' + panel.id), false);
+  (panel ? document.getElementById('recognition') : el).scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
+  return true;
 }
 
 function renderMentorship() {
@@ -3186,11 +3146,34 @@ function renderSpeaking() {
       .concat(types.map(t => `<button type="button" class="judging-filter-chip" data-type="${t}" aria-pressed="false">${t} <span class="chip-count">${SPEAKING.filter(s => s.type === t).length}</span></button>`))
       .join('');
 
-  document.getElementById('speakingGrid').innerHTML = groups.map(g => `
+  const grid = document.getElementById('speakingGrid');
+  grid.innerHTML = groups.map(g => `
     <div class="speak-group">
       <h3 class="speak-group-label">${g.label}</h3>
       <ol class="speak-timeline">${g.items.map(speakingItemHtml).join('')}</ol>
     </div>`).join('');
+
+  const SPEAK_FOLD = 6;
+  const allItems = [...grid.querySelectorAll('.speak-item')];
+  allItems.forEach((li, k) => li.classList.toggle('beyond-fold', k >= SPEAK_FOLD));
+  const syncGroups = () => grid.querySelectorAll('.speak-group').forEach(g => {
+    g.hidden = !g.querySelector('.speak-item:not([hidden])' + (grid.classList.contains('is-folded') ? ':not(.beyond-fold)' : ''));
+  });
+  let foldBtn = null;
+  if (allItems.length > SPEAK_FOLD) {
+    grid.classList.add('is-folded');
+    foldBtn = document.createElement('button');
+    foldBtn.type = 'button'; foldBtn.className = 'show-all-btn'; foldBtn.setAttribute('aria-controls', 'speakingGrid');
+    const sync = () => {
+      const folded = grid.classList.contains('is-folded');
+      foldBtn.textContent = folded ? `Show all ${allItems.length} talks` : 'Show fewer talks';
+      foldBtn.setAttribute('aria-expanded', String(!folded));
+      syncGroups();
+    };
+    foldBtn.addEventListener('click', () => { grid.classList.toggle('is-folded'); sync(); });
+    grid.after(foldBtn);
+    sync();
+  }
 
   const row = document.getElementById('speakingFilterRow');
   row.addEventListener('click', e => {
@@ -3200,8 +3183,14 @@ function renderSpeaking() {
     row.querySelectorAll('.judging-filter-chip').forEach(c => {
       const on = c === btn; c.classList.toggle('active', on); c.setAttribute('aria-pressed', String(on));
     });
-    document.querySelectorAll('#speakingGrid .speak-item').forEach(li => { li.hidden = type !== 'all' && li.dataset.type !== type; });
-    document.querySelectorAll('#speakingGrid .speak-group').forEach(g => { g.hidden = !g.querySelector('.speak-item:not([hidden])'); });
+    allItems.forEach(li => { li.hidden = type !== 'all' && li.dataset.type !== type; });
+    if (foldBtn) {
+      grid.classList.toggle('is-folded', type === 'all');
+      foldBtn.hidden = type !== 'all';
+      foldBtn.textContent = `Show all ${allItems.length} talks`;
+      foldBtn.setAttribute('aria-expanded', 'false');
+    }
+    syncGroups();
   });
 }
 
@@ -3212,40 +3201,62 @@ function mediaCardBanner(m) {
   return `<div class="media-card-banner">${img}${fallback}</div>`;
 }
 
-function renderMedia() {
-  document.getElementById('mediaGrid').innerHTML = MEDIA.map(m => `
-    <div class="media-card reveal">
-      ${mediaCardBanner(m)}
-      <div class="media-card-body">
-        <div class="media-card-top">
-          <span class="media-platform ${m.platformClass}">${m.platform}</span>
-          <span class="media-year">${m.year}</span>
-        </div>
-        <div class="media-title">${m.title}</div>
-        <p class="media-desc">${m.description}</p>
-        <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">Read article →</a>
-      </div>
-    </div>`).join('');
-}
+const WRITING_TYPES = [
+  { key: 'Article',      label: 'Bylines' },
+  { key: 'Expert Panel', label: 'Expert panels' },
+  { key: 'Feature',      label: 'Features' },
+  { key: 'Talk',         label: 'Talks' },
+  { key: 'Publication',  label: 'Research' }
+];
 
-function renderPublishedArticles() {
-  document.getElementById('publishedArticlesGrid').innerHTML = PUBLISHED_ARTICLES.map(m => `
-    <div class="media-card reveal">
+function renderMedia() {
+  const items = [...PUBLISHED_ARTICLES, ...MEDIA];
+  const grid = document.getElementById('mediaGrid');
+  grid.innerHTML = items.map(m => `
+    <div class="media-card reveal" data-type="${m.type}">
       ${mediaCardBanner(m)}
       <div class="media-card-body">
         <div class="media-card-top">
           <div class="media-card-tags">
             <span class="media-platform ${m.platformClass}">${m.platform}</span>
-            <span class="media-role-tag ${m.roleTag}">${m.roleLabel}</span>
+            ${m.roleLabel ? `<span class="media-role-tag ${m.roleTag}">${m.roleLabel}</span>` : `<span class="media-role-tag role-member">${m.type}</span>`}
           </div>
           <span class="media-year">${m.year}</span>
         </div>
         <div class="media-title">${m.title}</div>
         <p class="media-desc">${m.description}</p>
-        <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">Read article →</a>
+        <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">${m.type === 'Talk' ? 'View' : 'Read'} →</a>
       </div>
     </div>`).join('');
+
+  const types = WRITING_TYPES.filter(t => items.some(m => m.type === t.key));
+  const row = document.getElementById('writingFilterRow');
+  row.innerHTML = [`<button type="button" class="judging-filter-chip active" data-type="all" aria-pressed="true">All <span class="chip-count">${items.length}</span></button>`]
+    .concat(types.map(t => `<button type="button" class="judging-filter-chip" data-type="${t.key}" aria-pressed="false">${t.label} <span class="chip-count">${items.filter(m => m.type === t.key).length}</span></button>`))
+    .join('');
+  makeCollapsible('mediaGrid', 'pieces');
+  row.addEventListener('click', e => {
+    const btn = e.target.closest('.judging-filter-chip');
+    if (!btn) return;
+    row.querySelectorAll('.judging-filter-chip').forEach(c => {
+      const on = c === btn; c.classList.toggle('active', on); c.setAttribute('aria-pressed', String(on));
+    });
+    const type = btn.dataset.type;
+    grid.querySelectorAll('.media-card').forEach(c => {
+      c.hidden = type !== 'all' && c.dataset.type !== type;
+      if (!c.hidden) c.classList.add('visible');
+    });
+    // Filtering already narrows the list, so drop the fold while a filter is on
+    const fold = grid.nextElementSibling;
+    grid.classList.toggle('is-collapsed', type === 'all');
+    if (fold && fold.classList.contains('show-all-btn')) {
+      fold.hidden = type !== 'all';
+      fold.textContent = `Show all ${items.length} pieces`;
+      fold.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
+
 
 function renderEducation() {
   document.getElementById('educationGrid').innerHTML = EDUCATION.map(e => {
@@ -3298,33 +3309,143 @@ function renderMemberships() {
     </div>`).join('');
 }
 
-function renderSkillMatrix() {
-  document.getElementById('skillsMatrix').innerHTML = SKILLS.map(cat => `
-    <div class="skill-category">
-      <div class="skill-category-name">${cat.category}</div>
-      ${cat.skills.map(s => `
-        <div class="skill-item">
-          <div class="skill-row">
-            <span class="skill-name">${s.name}</span>
-            <span class="skill-pct">${s.pct}%</span>
-          </div>
-          <div class="skill-bar"><div class="skill-fill" data-pct="${s.pct}" style="width:0%"></div></div>
-        </div>`).join('')}
+const IMPACT = [
+  { value: "95%", label: "ML clause-extraction accuracy", org: "Amazon", project: "01",
+    story: "First automated clause parsing system in Amazon's Global Supply Chain org, built with Amazon Science. It extracts rebate, performance, and clawback clauses from unstructured contracts." },
+  { value: "$40B+", label: "Annual contract portfolio covered", org: "Amazon", project: "01",
+    story: "The extraction pipeline runs across a $40B+ annual contract portfolio, turning financial accruals that a 4-person team handled by hand into an automated process." },
+  { value: "50%", label: "Faster contract creation", org: "T-Mobile", project: "03",
+    story: "A CLM data model and workflow designed from first principles for SMB, Enterprise, Education, and Government customers, plus digitization of legacy paper contracts." },
+  { value: "30%", label: "Faster quote turnaround", org: "T-Mobile", project: "02",
+    story: "32+ net-new CPQ capabilities, including subsidy models, government funding (CLIN) structures, and EPO/SPO pricing, removed the dependency on a third-party seller tool." },
+  { value: "40%", label: "Fewer order errors", org: "T-Mobile", project: "02",
+    story: "An automated Order Management pipeline with real-time downstream integrations, compressing processing cycles from days to hours." },
+  { value: "18%", label: "Faster deal closure", org: "T-Mobile", project: "03",
+    story: "Onboarding, execution, amendment, and renewal on one CLM framework, with sales productivity up roughly 80%." },
+  { value: "20→80%", label: "Salesforce adoption in 12 months", org: "Amazon", project: "04",
+    story: "Weekly logins grew from 65 to 600+, and admin support fell from 20 hours a week to under 2 through self-serve In-App Guidance." },
+  { value: "$600B", label: "Federal lending program digitized", org: "PwC", project: "05",
+    story: "Fraud detection and eligibility controls built under COVID-19 timelines for the Federal Reserve's Main Street Lending Program portal." }
+];
+
+const GOALS = [
+  { label: "LinkedIn followers", now: "30K", target: "50K", pct: 60 },
+  { label: "Google Scholar citations", now: "55+", target: "100+", pct: 55 },
+  { label: "Published pieces in 2026", now: "8", target: "12", pct: 67 }
+];
+
+// Generic roving-tabindex tablist: click, arrows, Home/End
+function wireTabs(list, onSelect) {
+  const tabs = () => [...list.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus) => {
+    tabs().forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      t.classList.toggle('active', on);
+    });
+    if (focus) tab.focus();
+    onSelect(tab);
+  };
+  list.addEventListener('click', e => {
+    const tab = e.target.closest('[role="tab"]');
+    if (tab && list.contains(tab)) select(tab, false);
+  });
+  list.addEventListener('keydown', e => {
+    const all = tabs(); const i = all.indexOf(document.activeElement);
+    if (i < 0) return;
+    const next = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: all.length - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    select(all[(next + all.length) % all.length], true);
+  });
+  return select;
+}
+
+function renderGlance() {
+  // Impact: metric tiles drive a story pane
+  const tilesEl = document.getElementById('impactTiles');
+  tilesEl.innerHTML = IMPACT.map((m, i) => `
+    <button type="button" role="tab" class="impact-tile${i === 0 ? ' active' : ''}" id="it-${i}" aria-selected="${i === 0}" aria-controls="impactStory" tabindex="${i === 0 ? 0 : -1}" data-i="${i}">
+      <span class="impact-val">${m.value}</span>
+      <span class="impact-lbl">${m.label}</span>
+    </button>`).join('');
+  const story = document.getElementById('impactStory');
+  const showImpact = i => {
+    const m = IMPACT[i];
+    const p = PROJECTS.find(x => x.number === m.project);
+    story.innerHTML = `
+      <div class="impact-story-org">${m.org}</div>
+      <div class="impact-story-val">${m.value}</div>
+      <div class="impact-story-lbl">${m.label}</div>
+      <p>${m.story}</p>
+      ${p ? `<button type="button" class="glance-more" data-project="${p.number}">Read the case study: ${p.title.split(' · ')[0]} →</button>` : ''}`;
+  };
+  wireTabs(tilesEl, tab => showImpact(+tab.dataset.i));
+  showImpact(0);
+  story.addEventListener('click', e => {
+    const b = e.target.closest('[data-project]');
+    if (b) openProject(b.dataset.project);
+  });
+
+  // Skills: one domain at a time
+  const chips = document.getElementById('skillChips');
+  chips.innerHTML = SKILLS.map((c, i) => `<button type="button" role="tab" class="judging-filter-chip${i === 0 ? ' active' : ''}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" aria-controls="skillList" data-i="${i}">${c.category}</button>`).join('');
+  const list = document.getElementById('skillList');
+  const showSkills = i => {
+    list.innerHTML = SKILLS[i].skills.map(sk => `
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">${sk.name}</span><span class="skill-pct">${sk.pct}%</span></div>
+        <div class="skill-bar" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${sk.pct}" aria-label="${sk.name}"><div class="skill-fill" style="width:0%"></div></div>
+      </div>`).join('');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      list.querySelectorAll('.skill-fill').forEach((f, k) => { f.style.width = SKILLS[i].skills[k].pct + '%'; });
+    }));
+  };
+  wireTabs(chips, tab => showSkills(+tab.dataset.i));
+  showSkills(0);
+
+  // Research: computed from the publication data so it never drifts
+  const cited = RESEARCH_PUBLISHED.filter(r => /citations/.test(r.citations));
+  const accepted = RESEARCH_PUBLISHED.length - cited.length;
+  document.getElementById('researchMetrics').innerHTML = [
+    ['55+', 'Google Scholar citations'],
+    [String(cited.length), 'Peer-reviewed papers'],
+    [String(accepted), 'Accepted, 2026'],
+    [String(RESEARCH_ACTIVE.length), 'Active research streams']
+  ].map(([v, l]) => `<div class="glance-metric"><span class="glance-metric-val">${v}</span><span class="glance-metric-lbl">${l}</span></div>`).join('');
+  document.querySelector('#researchTable tbody').innerHTML = RESEARCH_PUBLISHED.map(r => {
+    const isAccepted = !/citations/.test(r.citations);
+    return `<tr>
+      <td class="glance-td-accent">${r.venue} · ${r.year.replace(' · Accepted', '')}</td>
+      <td>${r.title}</td>
+      <td><span class="glance-badge${isAccepted ? ' is-new' : ''}">${isAccepted ? 'Accepted' : 'Published'}</span></td>
+      <td>${isAccepted ? 'n/a' : r.citations.replace(' (Google Scholar)', '').replace(' citations', '')}</td>
+    </tr>`;
+  }).join('');
+
+  // Goals
+  document.getElementById('goalList').innerHTML = GOALS.map(g => `
+    <div class="skill-item">
+      <div class="skill-row"><span class="skill-name">${g.label}</span><span class="skill-pct">${g.now} of ${g.target}</span></div>
+      <div class="skill-bar" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${g.pct}" aria-label="${g.label}: ${g.now} of ${g.target}"><div class="skill-fill goal-fill" style="width:${g.pct}%"></div></div>
     </div>`).join('');
+
+  // Outer tabs
+  wireTabs(document.querySelector('#glance .glance-tabs'), tab => {
+    document.querySelectorAll('#glance .glance-panel').forEach(p => { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
+    if (tab.id === 'gt-skills') showSkills(+chips.querySelector('[aria-selected="true"]').dataset.i);
+  });
 }
 
 // ==================================================================
 //  CHARTS
 // ==================================================================
 function initCharts() {
-  if (typeof Chart === 'undefined') return;
-
-  // White card bg - use dark text and light grid lines
+  if (typeof Chart === 'undefined' || !document.getElementById('radarChart')) return;
   Chart.defaults.color = '#444444';
   Chart.defaults.borderColor = '#e0e0e0';
   Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-
-  // Radar - Core Competencies
   new Chart(document.getElementById('radarChart'), {
     type: 'radar',
     data: {
@@ -3341,6 +3462,7 @@ function initCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
+      animation: REDUCED_MOTION ? false : undefined,
       plugins: { legend: { display: false } },
       scales: {
         r: {
@@ -3350,61 +3472,6 @@ function initCharts() {
           angleLines: { color: '#cccccc' },
           pointLabels: { font: { size: 10, weight: '600' }, color: '#333333' }
         }
-      }
-    }
-  });
-
-  // Horizontal bar - Tech Proficiency
-  new Chart(document.getElementById('techChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Salesforce CPQ/Vlocity','OmniStudio','CLM Architecture','Agentforce / LLM','Python / ML','LWC / JS'],
-      datasets: [{
-        label: 'Proficiency %',
-        data: [94, 90, 92, 87, 77, 74],
-        backgroundColor: ['#00a884','#00907a','#007a62','#005f4a','#5b3fa6','#7c3aed'],
-        borderRadius: 4, borderSkipped: false
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      indexAxis: 'y',
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { min: 60, max: 100, grid: { color: '#eeeeee' }, ticks: { color: '#555555', font: { size: 10 } } },
-        y: { grid: { display: false }, ticks: { color: '#333333', font: { size: 10, weight: '500' } } }
-      }
-    }
-  });
-
-  // Bar - Career Impact
-  new Chart(document.getElementById('impactChart'), {
-    type: 'bar',
-    data: {
-      labels: ['ML Accuracy %', 'Citations', 'CPQ Capabilities', 'Adoption %', 'Speed Gain %'],
-      datasets: [{
-        label: 'Impact',
-        data: [95, 55, 32, 80, 50],
-        backgroundColor: ['#00a884','#00907a','#007a62','#5b3fa6','#7c3aed'],
-        borderRadius: 5
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const units = ['% accuracy','citations','capabilities','% adoption','% faster'];
-              return `${ctx.parsed.y} ${units[ctx.dataIndex]}`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: '#333333', font: { size: 9, weight: '600' } } },
-        y: { grid: { color: '#eeeeee' }, ticks: { color: '#555555', font: { size: 10 } } }
       }
     }
   });
@@ -3509,14 +3576,14 @@ function buildSearchIndex() {
   EXPERIENCE.forEach(e => idx.push({ title: e.role, meta: e.company + ' · Experience', section: 'experience' }));
   RESEARCH_PUBLISHED.forEach(r => idx.push({ title: r.title, meta: r.venue + ' · Research', section: 'research' }));
   PROJECTS.forEach(p => idx.push({ title: p.title, meta: 'Project', section: 'projects' }));
-  JUDGING_HACKATHONS.forEach(h => idx.push({ title: h.name, meta: 'Hackathon Judging', section: 'judging', url: h.url }));
-  JUDGING_PEER_REVIEW.forEach(j => idx.push({ title: j.name, meta: 'Peer Review', section: 'judging', url: j.url }));
-  JUDGING_TPC_MAIN.forEach(j => idx.push({ title: j.name, meta: 'TPC Role', section: 'judging', url: j.url }));
-  JUDGING_TPC_WORKSHOP.forEach(j => idx.push({ title: j.name, meta: 'TPC Role', section: 'judging', url: j.url }));
+  JUDGING_HACKATHONS.forEach(h => idx.push({ title: h.name, meta: 'Hackathon Judging', section: 'hackathons', url: h.url }));
+  JUDGING_PEER_REVIEW.forEach(j => idx.push({ title: j.name, meta: 'Peer Review', section: 'peer-review', url: j.url }));
+  JUDGING_TPC_MAIN.forEach(j => idx.push({ title: j.name, meta: 'TPC Role', section: 'committees', url: j.url }));
+  JUDGING_TPC_WORKSHOP.forEach(j => idx.push({ title: j.name, meta: 'TPC Role', section: 'committees', url: j.url }));
   MENTORSHIP.forEach(m => idx.push({ title: m.title, meta: (m.org || 'Mentorship'), section: 'mentorship', url: m.url }));
   SPEAKING.forEach(s => idx.push({ title: s.title, meta: s.venue + ' · Speaking', section: 'speaking', url: s.url }));
   MEDIA.forEach(m => idx.push({ title: m.title, meta: m.platform + ' · Media', section: 'media', url: m.url }));
-  PUBLISHED_ARTICLES.forEach(p => idx.push({ title: p.title, meta: p.platform + ' · Article', section: 'publishedArticles', url: p.url }));
+  PUBLISHED_ARTICLES.forEach(p => idx.push({ title: p.title, meta: p.platform + ' · Article', section: 'media', url: p.url }));
   EDUCATION.forEach(e => idx.push({ title: e.degree, meta: e.school, section: 'education' }));
   MEMBERSHIPS.forEach(m => idx.push({ title: m.name, meta: 'Membership', section: 'memberships', url: m.url }));
   return idx;
@@ -3545,8 +3612,7 @@ function buildSearchIndex() {
     if (item.url) {
       window.open(item.url, '_blank', 'noopener,noreferrer');
     } else if (item.section) {
-      const el = document.getElementById(item.section);
-      if (el) el.scrollIntoView();
+      revealTarget(item.section);
     }
   }
   function renderResults(query) {
@@ -3612,10 +3678,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderMentorship();
   renderSpeaking();
   renderMedia();
-  renderPublishedArticles();
   renderEducation();
   renderMemberships();
-  renderSkillMatrix();
+  renderGlance();
+  renderHub();
+  addReadMore(document);
 
   // Obsidian Executive effects
   initCardTilt();
@@ -3676,6 +3743,7 @@ document.addEventListener('DOMContentLoaded', () => {
     research:    '#170e30',   // violet
     projects:    '#260d0d',   // burgundy
     judging:     '#0a231c',   // teal-green
+    recognition: '#0a231c',
     mentorship:  '#0b1233',   // navy
     speaking:    '#241d08',   // gold
     media:       '#230a29',   // magenta
@@ -3691,6 +3759,7 @@ document.addEventListener('DOMContentLoaded', () => {
     research:    '#ede4ff',
     projects:    '#ffe8e8',
     judging:     '#e2f5ee',
+    recognition: '#e2f5ee',
     mentorship:  '#e7ebfe',
     speaking:    '#fdf5da',
     media:       '#fae6fd',
@@ -3702,8 +3771,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionEls = Array.from(document.querySelectorAll('section[id]'));
   // Several sections share one nav destination now that the nav is grouped
   const NAV_SECTION_MAP = {
-    insights: '#home', education: '#experience', projects: '#research',
-    mentorship: '#judging', memberships: '#judging', publishedArticles: '#media'
+    insights: '#home', education: '#research'
   };
   const navLinks   = document.querySelectorAll('.nav-links a');
 
@@ -3773,6 +3841,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && navList.classList.contains('open')) { setNavOpen(false); navToggle.focus(); }
   });
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(HUB_ALIASES[id] || id);
+    if (target && (target.closest('.hub-panel') || HUB_ALIASES[id])) { e.preventDefault(); revealTarget(id); history.replaceState(null, '', '#' + id); }
+  });
+  if (location.hash.length > 1) setTimeout(() => revealTarget(decodeURIComponent(location.hash.slice(1))), 300);
 
   // Back-to-top button
   document.getElementById('backToTop').addEventListener('click', () => {
