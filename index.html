@@ -1038,6 +1038,10 @@
     @media (max-width: 640px) {
       .nav-logo .brand-word { font-size: 0.72rem; letter-spacing: 0.12em; }
     }
+
+    .media-also { font-size: 0.76rem; color: var(--text-faint); margin: -2px 0 8px; }
+    .media-also a { color: var(--accent-2-text); }
+    .press-wordmark { font-weight: 800; font-size: 0.8rem; letter-spacing: 0.02em; color: var(--brand-carbon); text-decoration: none; }
     @media (max-width: 400px) {
       .nav-cta-pill { display: none; }
       .nav-logo { white-space: nowrap; }
@@ -1294,6 +1298,7 @@
           <div class="press-strip-label">as seen in</div>
           <div class="press-logo-row">
             <a href="https://timesofindia.indiatimes.com/education/news/strong-cpq-and-contract-data-are-key-to-unlocking-agentic-ai-says-tech-leader-eshaan-jain/articleshow/131582299.cms" target="_blank" rel="noopener noreferrer" class="press-logo-item" title="Times of India"><svg viewBox="0 0 323.419 22.677" width="90" height="16" role="img" aria-label="Times of India logo"><use href="#sym-toi"/></svg></a>
+            <a href="https://alltechmagazine.com/enterprise-ai-and-financial-risk-eshaan-jains-approach/" target="_blank" rel="noopener noreferrer" class="press-logo-item press-wordmark" title="All Tech Magazine">All Tech Magazine</a>
             <a href="https://aijourn.com/beyond-productivity-how-enterprise-ai-can-protect-revenue-and-reduce-contract-risk/" target="_blank" rel="noopener noreferrer" class="press-logo-item" title="AI Journal"><img src="https://aijourn.com/wp-content/uploads/2024/06/Screenshot-2024-06-01-at-14.53.04.png" alt="AI Journal logo" width="90" height="20" style="object-fit:contain;" loading="lazy"></a>
             <a href="https://councils.forbes.com/u/5b5910f7-4242-4f6c-a051-ac0daefb4b57" target="_blank" rel="noopener noreferrer" class="press-logo-item" title="Forbes Technology Council"><svg viewBox="0 0 200 54" width="70" height="19" role="img" aria-label="Forbes logo" style="color:#000000;"><use href="#sym-forbes"/></svg></a>
           </div>
@@ -1617,7 +1622,7 @@
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Writing &amp; Press</h2>
-      <span class="section-count">Bylines, expert panels, and coverage</span>
+      <span class="section-count">Bylines, expert panels, and coverage about my work</span>
     </div>
     <div class="judging-filter-row" id="writingFilterRow" role="group" aria-label="Filter writing by type"></div>
     <div class="media-grid" id="mediaGrid"></div>
@@ -2499,59 +2504,291 @@ const SPEAKING = [
 // ==================================================================
 //  MEDIA  (update URLs and titles as articles are published)
 // ==================================================================
+// Coverage written ABOUT Eshaan by others (features, interviews, profiles)
 const MEDIA = [
   {
-    platform: "SFBen", platformClass: "platform-sfben", type: "Article",
-    year: "2024-2025",
-    title: "Contract Data as the Moat for Agentic Salesforce",
-    description: "Technical deep-dive into CLM architecture, clause extraction, and how clean contract data becomes the competitive moat for organizations deploying Agentforce.",
-    url: "https://www.salesforceben.com/"
+    date: "2026-09-02",
+    platform: "All Tech Magazine",
+    platformClass: "platform-alltech",
+    type: "Feature",
+    year: "Sep 2026",
+    title: "Enterprise AI And Financial Risk: Eshaan Jain's Approach",
+    description: "Profile by Christy Alex on how enterprise AI can reduce financial risk, surface hidden contractual exposure, and move from prototype to production at scale.",
+    url: "https://alltechmagazine.com/enterprise-ai-and-financial-risk-eshaan-jains-approach/",
+    imageUrl: "https://alltechmagazine.com/wp-content/uploads/2026/09/Eshaan-Jain.webp",
+    imageFallback: "ATM",
+    iconBg: "#0B2B5B"
   },
   {
-    platform: "Apex Hours", platformClass: "platform-apex", type: "Talk",
-    year: "2024-2025",
-    title: "AI + CPQ: Building Autonomous Deal Management in Salesforce",
-    description: "Session covering the integration of Salesforce Agentforce with Vlocity CPQ, including live agentic pricing demonstrations and production architecture patterns.",
-    url: "https://www.apexhours.com/"
-  },
-  {
-    platform: "Apex Hours", platformClass: "platform-apex", type: "Article",
-    year: "2026",
-    title: "Not Every Step In Your CPQ Quote Needs A Frontier Model",
-    description: "Argues that model selection in CPQ should match task complexity: narrow classification and extraction steps run cheaper on smaller models, and only multi-constraint reasoning justifies a frontier model's cost.",
-    url: "https://www.apexhours.com/not-every-step-in-your-cpq-quote-needs-a-frontier-model/",
-    imageUrl: "https://www.apexhours.com/wp-content/uploads/2026/07/Not-Every-Step-In-Your-CPQ-Quote-Needs-A-Frontier-Model.webp", imageFallback: "AH", iconBg: "#4c1d95"
-  },
-  {
-    platform: "IEEE", platformClass: "platform-ieee", type: "Publication",
-    year: "2014-2015",
-    title: "3 Peer-Reviewed Papers (IEEE & Elsevier)",
-    description: "Published research on demand forecasting, bio-inspired image classification, and mobile cloud computing architecture. 55+ total citations on Google Scholar.",
-    url: "https://scholar.google.com/citations?user=XA_-VzAAAAAJ"
-  },
-  {
-    platform: "Times of India", platformClass: "platform-toi", type: "Feature",
-    year: "2026",
-    title: "Strong CPQ and Contract Data Are Key to Unlocking Agentic AI, Says Tech Leader Eshaan Jain",
-    description: "Profile on how CPQ architecture and contract data quality determine whether an enterprise is actually ready for agentic AI, not just able to demo it.",
-    url: "https://timesofindia.indiatimes.com/education/news/strong-cpq-and-contract-data-are-key-to-unlocking-agentic-ai-says-tech-leader-eshaan-jain/articleshow/131582299.cms",
-    imageUrl: null, imageFallback: "TOI", iconBg: "#7c1d1d"
-  },
-  {
+    date: "2026-07-20",
     platform: "AI Journal", platformClass: "platform-aijourn", type: "Feature",
-    year: "2026",
+    year: "Jul 2026",
     title: "Beyond Productivity: How Enterprise AI Can Protect Revenue and Reduce Contract Risk",
     description: "Interview on why AI's biggest enterprise value is catching financial exposure, not just moving faster: systematic contract intelligence cutting review time from weeks to days across billions in contractual risk.",
     url: "https://aijourn.com/beyond-productivity-how-enterprise-ai-can-protect-revenue-and-reduce-contract-risk/",
     imageUrl: "https://aijourn.com/wp-content/uploads/2026/07/Eshaan-Professional-Headshot-640x470.jpeg", imageFallback: "AIJ", iconBg: "#78350f"
+  },
+  {
+    date: "2026-06-08",
+    platform: "Times of India", platformClass: "platform-toi", type: "Feature",
+    year: "Jun 2026",
+    title: "Strong CPQ and Contract Data Are Key to Unlocking Agentic AI, Says Tech Leader Eshaan Jain",
+    description: "Profile on how CPQ architecture and contract data quality determine whether an enterprise is actually ready for agentic AI, not just able to demo it.",
+    url: "https://timesofindia.indiatimes.com/education/news/strong-cpq-and-contract-data-are-key-to-unlocking-agentic-ai-says-tech-leader-eshaan-jain/articleshow/131582299.cms",
+    imageUrl: null, imageFallback: "TOI", iconBg: "#7c1d1d"
   }
 ];
 
 // ==================================================================
 //  PUBLISHED ARTICLES  (bylines + Forbes Technology Council contributor quotes)
 // ==================================================================
+// Pieces Eshaan wrote or contributed to (bylines and expert panels)
 const PUBLISHED_ARTICLES = [
   {
+    date: "2026-09-14",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Sep 2026",
+    title: "Why Most Agentic AI Pilots Never Make It Into Revenue Workflows",
+    description: "Most agentic AI pilots stall before production. Fixing data, documentation and workflow ownership moves them into revenue workflows faster than a model upgrade does.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/09/14/why-most-agentic-ai-pilots-never-make-it-into-revenue-workflows/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/681b8e3b7f7b6dbedd6474ed/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-14",
+    platform: "Clinical Supply Leader",
+    platformClass: "platform-clinical",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Sep 2026",
+    title: "Clinical Supply Systems Need IT General Controls",
+    description: "Validating a clinical trial system once does not keep it trustworthy. IT general controls protect the data, the supply decisions and patient safety long after go-live.",
+    url: "https://www.clinicalsupplyleader.com/doc/clinical-supply-systems-need-it-general-controls-0001",
+    imageUrl: "https://vertassets.blob.core.windows.net/image/2541bc12/2541bc12-24b5-4877-931d-253cf8d108e1/online_document_verification__file_management__data_storage_gettyimages_2265259381.jpg",
+    imageFallback: "CSL",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-11",
+    platform: "ISACA Industry News",
+    platformClass: "platform-isaca",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Sep 2026",
+    title: "Auditing Agentic AI Workflows: How to Control Test When the System Decides for Itself",
+    description: "Where conventional IT audits fail on autonomous agents, and how to test prompts, boundaries, outputs, model updates and overrides so the system stays governed, traceable and in scope.",
+    url: "https://www.isaca.org/resources/news-and-trends/industry-news/2026/auditing-agentic-ai-workflows-how-to-control-test-when-the-system-decides-for-itself",
+    imageUrl: null,
+    imageFallback: "ISACA",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-11",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Sep 2026",
+    title: "Where Quantum Technology Could Deliver Practical Value First",
+    description: "Contributing panelist. Contribution: quantum's earliest enterprise payoff sits in combinatorial problems like real-time identity resolution and record deduplication across very large databases.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/09/11/where-quantum-technology-could-deliver-practical-value-first/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6aa4039bfaaab848de75861a/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-08",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Sep 2026",
+    title: "AI In Education: Key Skills Students Need To Think For Themselves",
+    description: "Contributing panelist. Contribution: teach students to red-team AI output, stress-testing answers for edge cases, logic gaps and hallucinations before trusting a confident tone.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/09/08/ai-in-education-key-skills-students-need-to-think-for-themselves/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a9ac1d8e8b70dc05a258e44/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-07",
+    platform: "Clinical Supply Leader",
+    platformClass: "platform-clinical",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Sep 2026",
+    title: "Last-Mile Lessons For Depot-To-Site Delivery",
+    description: "Depot-to-site delivery is more than a courier handoff. Reconciliation gaps, temperature risk and mismatched SLAs are where last-mile issues turn into trial delays.",
+    url: "https://www.clinicalsupplyleader.com/doc/last-mile-lessons-for-depot-to-site-delivery-0001",
+    imageUrl: "https://vertassets.blob.core.windows.net/image/90929a5e/90929a5e-2e85-489a-bd70-597c73e799db/warehouse_worker_checking_barcodes_gettyimages_2265704054.jpg",
+    imageFallback: "CSL",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-03",
+    platform: "HackerNoon",
+    platformClass: "platform-hackernoon",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Sep 2026",
+    title: "A Four-Layer Audit for Contract Data Before You Deploy Agentic AI",
+    description: "A four-layer audit of CPQ and CLM contract data to run before agentic AI workflows are allowed to act on it.",
+    url: "https://hackernoon.com/a-four-layer-audit-for-contract-data-before-you-deploy-agentic-ai",
+    imageUrl: "https://hackernoon.imgix.net/images/RTmhtsJkZXOhbA3GffJTKGDowAZ2-a383ez5.jpeg",
+    imageFallback: "HN",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-09-03",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Sep 2026",
+    title: "What Products Are Missing For Today's Retirees? Age Tech Leaders Weigh In",
+    description: "Contributing panelist. Contribution: a digital legacy and agentic trust account that secures a retiree's data, credentials and automated workflows across a long post-career life.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/09/03/what-products-are-missing-for-todays-retirees-age-tech-leaders-weigh-in/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a989efa63c720684e48e021/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-31",
+    platform: "Clinical Supply Leader",
+    platformClass: "platform-clinical",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Aug 2026",
+    title: "Lessons In Forecasting Discipline From A $40B Supply Chain",
+    description: "Lessons from Amazon's supply chain: most forecasting errors start upstream, when protocol changes, enrollment and site data reach the supply plan too late to prevent waste.",
+    url: "https://www.clinicalsupplyleader.com/doc/lessons-in-forecasting-discipline-from-a-b-supply-chain-0001",
+    alsoOn: [{"label": "Clinical Leader", "url": "https://www.clinicalleader.com/doc/lessons-in-forecasting-discipline-from-a-b-supply-chain-0001"}, {"label": "Clinical Leader newsletter, Sep 5", "url": "https://www.clinicalleader.com/doc/designing-more-representative-trials-through-strategic-planning-0001"}],
+    imageUrl: "https://vertassets.blob.core.windows.net/image/3d021318/3d021318-3303-4492-8cc8-e884fd57d6a1/warehouse_task_setup_gettyimages_2256605674.jpg",
+    imageFallback: "CSL",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-28",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Aug 2026",
+    title: "Healthcare AI Workflows That Carry Cyber And Privacy Risks",
+    description: "Contributing panelist. Contribution: automated patient messages can expose sensitive results on a shared phone, so safe channels and message masking rules belong in place before the first send.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/08/28/healthcare-ai-workflows-that-carry-cyber-and-privacy-risks/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/69eb860e49456326c45f7d82/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-27",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Aug 2026",
+    title: "AI Use Cases Where 'Good Enough' Beats 'Most Powerful'",
+    description: "Contributing panelist. Contribution: a mid-tier model drafting first-pass supplier RFPs saves procurement days, as long as an experienced negotiator owns pricing and final terms.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/08/27/ai-use-cases-where-good-enough-beats-most-powerful/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a8f549b9ca837737bd27d37/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-24",
+    platform: "Clinical Supply Leader",
+    platformClass: "platform-clinical",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Aug 2026",
+    title: "Accountability Gaps Can Break Clinical Supply Contracts",
+    description: "When responsibilities differ across clinical supply agreements, supply fails in the gaps. Aligning obligations up front prevents disputes, delays and risk.",
+    url: "https://www.clinicalsupplyleader.com/doc/accountability-gaps-can-break-clinical-supply-contracts-0001",
+    alsoOn: [{"label": "Clinical Leader", "url": "https://www.clinicalleader.com/doc/accountability-gaps-can-break-clinical-supply-contracts-0001"}],
+    imageUrl: "https://vertassets.blob.core.windows.net/image/1d81ebe9/1d81ebe9-18e4-47e1-ba42-acce4bfdee19/legal_settlement__financial_report_gettyimages_1413994710.jpg",
+    imageFallback: "CSL",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-20",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Aug 2026",
+    title: "Safer Smartphones: Key Settings To Check For Better Security",
+    description: "Contributing panelist. Contribution: remove old \"Sign in with\" app connections, since a forgotten token can turn a minor app breach into an identity takeover.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/08/20/safer-smartphones-key-settings-to-check-for-better-security/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/68cb055a84e31df9c0426188/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-18",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Aug 2026",
+    title: "The Power Constraint Your AI Road Map Probably Isn't Modeling",
+    description: "AI compute runs on electricity, and demand is climbing fast. AI road maps need to plan for power cost and availability alongside model choice.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/08/18/the-power-constraint-your-ai-road-map-probably-isnt-modeling/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a82f6fe0d63f56ab6d57d3f/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-14",
+    platform: "Clinical Supply Leader",
+    platformClass: "platform-clinical",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "Aug 2026",
+    title: "Fixing The Data Problem Before AI Can Help Clinical Trial Supply",
+    description: "AI cannot fix clinical supply forecasting on fragmented data. Structuring enrollment, inventory and label data has to come first.",
+    url: "https://www.clinicalsupplyleader.com/doc/fixing-the-data-problem-before-ai-can-help-clinical-trial-supply-0001",
+    alsoOn: [{"label": "Clinical Supply Leader newsletter, Sep 8", "url": "https://www.clinicalsupplyleader.com/doc/fixing-the-data-problem-before-ai-can-help-clinical-trial-supply-0002"}],
+    imageUrl: "https://vertassets.blob.core.windows.net/image/63cb280f/63cb280f-3519-4cbb-9979-9196673719f9/pharmaceutical_industry_research__development_data_gettyimages_1354838510.jpg",
+    imageFallback: "CSL",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-08-13",
+    platform: "Forbes Technology Council",
+    platformClass: "platform-forbes",
+    type: "Expert Panel",
+    roleTag: "role-member",
+    roleLabel: "Contributing Panelist",
+    year: "Aug 2026",
+    title: "CI/CD Security Risks Leaders Should Review Before Attackers Do",
+    description: "Contributing panelist. Contribution: keep the identity that fetches open-source packages separate from the one that publishes artifacts, so a hijacked build agent cannot push poisoned code.",
+    url: "https://www.forbes.com/councils/forbestechcouncil/2026/08/13/cicd-security-risks-leaders-should-review-before-attackers-do/",
+    imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a7c844dd37986bc061f0adf/0x0.jpg?width=960",
+    imageFallback: "F",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026-04-24",
     platform: "Apex Hours", platformClass: "platform-apex", type: "Article",
     roleTag: "role-fellow", roleLabel: "Author",
     year: "Apr 2026",
@@ -2561,6 +2798,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: null, imageFallback: "AH", iconBg: "#4c1d95"
   },
   {
+    date: "2026-04-03",
     platform: "Apex Hours", platformClass: "platform-apex", type: "Article",
     roleTag: "role-fellow", roleLabel: "Author",
     year: "Apr 2026",
@@ -2570,6 +2808,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: null, imageFallback: "AH", iconBg: "#4c1d95"
   },
   {
+    date: "2026-07-22",
     platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
     roleTag: "role-member", roleLabel: "Contributing Panelist",
     year: "Jul 2026",
@@ -2579,6 +2818,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a60cdb928c98f7bc2809f93/Two-software-developers-review-code-together-at-a-workstation--with-one-pointing/0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
   },
   {
+    date: "2026-07-15",
     platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Article",
     roleTag: "role-fellow", roleLabel: "Author",
     year: "Jul 2026",
@@ -2588,6 +2828,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a567322d0d15fced19a1bae//0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
   },
   {
+    date: "2026-06-01",
     platform: "Product Coalition", platformClass: "platform-productcoalition", type: "Article",
     roleTag: "role-fellow", roleLabel: "Author",
     year: "Jun 2026",
@@ -2597,6 +2838,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: null, imageFallback: "PC", iconBg: "#831843"
   },
   {
+    date: "2026-07-10",
     platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
     roleTag: "role-member", roleLabel: "Contributing Panelist",
     year: "Jul 2026",
@@ -2606,6 +2848,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a50340f0e41da54ae0e24f1/Scales-of-Justice-Displayed-with-Circuitry-Pattern-as-Symbol-of-Digital-Technology/0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
   },
   {
+    date: "2026-06-26",
     platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
     roleTag: "role-member", roleLabel: "Contributing Panelist",
     year: "Jun 2026",
@@ -2615,6 +2858,7 @@ const PUBLISHED_ARTICLES = [
     imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a3e9525d58c550fbe462fa3/Three-business-professionals-sit-around-a-conference-table-as-two-people-shake-hands-/0x0.jpg?width=960", imageFallback: "F", iconBg: "#1e3a5f"
   },
   {
+    date: "2026-06-24",
     platform: "Forbes Technology Council", platformClass: "platform-forbes", type: "Expert Panel",
     roleTag: "role-member", roleLabel: "Contributing Panelist",
     year: "Jun 2026",
@@ -2622,6 +2866,25 @@ const PUBLISHED_ARTICLES = [
     description: "Contributing panelist on AI-resistant SaaS moats. Contribution: AI lowers the barrier to copying features, so the real moat shifts from what a platform does to how deeply it's woven into a customer's workflow.",
     url: "https://www.forbes.com/councils/forbestechcouncil/2026/06/24/saas-competitive-advantages-that-ai-cant-easily-replicate/",
     imageUrl: "https://imageio.forbes.com/specials-images/imageserve/6a3986879db48ec843dd4ac1/A-person-points-toward-a-digital-SaaS-interface-featuring-a-central-cloud-icon/0x0.jpg?crop=4995%2C2809%2Cx849%2Cy0%2Csafe&width=960", imageFallback: "F", iconBg: "#1e3a5f"
+  },
+  {
+    date: "2026-07-21",
+    platform: "Apex Hours", platformClass: "platform-apex", type: "Article",
+    roleTag: "role-fellow", roleLabel: "Author",
+    year: "Jul 2026",
+    title: "Not Every Step In Your CPQ Quote Needs A Frontier Model",
+    description: "Argues that model selection in CPQ should match task complexity: narrow classification and extraction steps run cheaper on smaller models, and only multi-constraint reasoning justifies a frontier model's cost.",
+    url: "https://www.apexhours.com/not-every-step-in-your-cpq-quote-needs-a-frontier-model/",
+    imageUrl: "https://www.apexhours.com/wp-content/uploads/2026/07/Not-Every-Step-In-Your-CPQ-Quote-Needs-A-Frontier-Model.webp", imageFallback: "AH", iconBg: "#4c1d95"
+  },
+  {
+    date: "2025-01-01",
+    platform: "SFBen", platformClass: "platform-sfben", type: "Article",
+    roleTag: "role-fellow", roleLabel: "Author",
+    year: "2024-2025",
+    title: "Contract Data as the Moat for Agentic Salesforce",
+    description: "Technical deep-dive into CLM architecture, clause extraction, and how clean contract data becomes the competitive moat for organizations deploying Agentforce.",
+    url: "https://www.salesforceben.com/"
   }
 ];
 
@@ -3312,13 +3575,13 @@ function mediaCardBanner(m) {
 const WRITING_TYPES = [
   { key: 'Article',      label: 'Bylines' },
   { key: 'Expert Panel', label: 'Expert panels' },
-  { key: 'Feature',      label: 'Features' },
+  { key: 'Feature',      label: 'Coverage' },
   { key: 'Talk',         label: 'Talks' },
   { key: 'Publication',  label: 'Research' }
 ];
 
 function renderMedia() {
-  const items = [...PUBLISHED_ARTICLES, ...MEDIA];
+  const items = [...PUBLISHED_ARTICLES, ...MEDIA].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   const grid = document.getElementById('mediaGrid');
   grid.innerHTML = items.map(m => `
     <div class="media-card reveal" data-type="${m.type}">
@@ -3333,6 +3596,7 @@ function renderMedia() {
         </div>
         <div class="media-title">${m.title}</div>
         <p class="media-desc">${m.description}</p>
+        ${m.alsoOn ? `<p class="media-also">Also in ${m.alsoOn.map(a => `<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.label}</a>`).join(', ')}</p>` : ''}
         <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">${m.type === 'Talk' ? 'View' : 'Read'} →</a>
       </div>
     </div>`).join('');
@@ -3439,7 +3703,10 @@ const IMPACT = [
 const GOALS = [
   { label: "LinkedIn followers", now: "30K", target: "50K", pct: 60 },
   { label: "Google Scholar citations", now: "55+", target: "100+", pct: 55 },
-  { label: "Published pieces in 2026", now: "8", target: "12", pct: 67 }
+  (() => {
+    const n = PUBLISHED_ARTICLES.filter(a => a.type === 'Article' && (a.date || '').startsWith('2026')).length;
+    return { label: "Published bylines in 2026", now: String(n), target: "12", pct: Math.min(100, Math.round(n / 12 * 100)) };
+  })()
 ];
 
 // Generic roving-tabindex tablist: click, arrows, Home/End
