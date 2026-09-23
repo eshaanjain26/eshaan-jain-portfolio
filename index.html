@@ -1042,6 +1042,10 @@
     .media-also { font-size: 0.76rem; color: var(--text-faint); margin: -2px 0 8px; }
     .media-also a { color: var(--accent-2-text); }
     .press-wordmark { font-weight: 800; font-size: 0.8rem; letter-spacing: 0.02em; color: var(--brand-carbon); text-decoration: none; }
+
+    .media-xpub { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; margin-top: auto; border-top: 1px dashed var(--border); }
+    .media-xpub-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
+    .media-xpub-links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
     @media (max-width: 400px) {
       .nav-cta-pill { display: none; }
       .nav-logo { white-space: nowrap; }
@@ -2492,7 +2496,6 @@ const SPEAKING = [
   { date: "2026-07-11", type: "Workshop", title: "Agentic AI: From Chatbots to Autonomous Agents", venue: "VSH Hacks", year: "Jul 11, 2026", description: "Workshop for VSH Hacks participants on the fundamentals of autonomous AI agents." },
   { date: "2024-09-17", type: "Talk", title: "Enterprise CPQ and Agentforce: From Configuration to Revenue Product", venue: "Dreamforce (×2)", year: "2023, 2024", url: "https://www.salesforce.com/dreamforce/", description: "Dreamforce is Salesforce's flagship annual conference in San Francisco. Two-time speaker, presenting to practitioners and executives on treating CPQ as a revenue product with direct PM ownership of quote-to-cash outcomes." },
   { date: "2026-05-23", type: "Keynote", title: "Keynote Speaker · 2026 UW IEEE Spring Conference", venue: "IEEE Seattle Section · University of Washington, Seattle (HUB 334)", year: "May 23, 2026", url: "https://ieee-seattle.org/event/2026-uw-ieee-spring-conference/", description: "The UW IEEE Spring Conference is run by the IEEE student branches of UW Bothell, Seattle, and Tacoma. Delivered the keynote on enterprise AI and applied ML in production environments, hosted by IEEE Seattle Section chair John Vertner." },
-  { date: "2025-06-01", type: "Talk", title: "AI + CPQ: Designing Agentic Quote-to-Cash", venue: "Apex Hours", year: "2024-2025", url: "https://www.apexhours.com/", description: "Apex Hours is one of the largest free learning communities in the Salesforce ecosystem. Spoke on the intersection of Salesforce Agentforce and CPQ, covering agentic automation, pricing intelligence, and autonomous deal management." },
   { date: "2025-01-01", type: "Talk", title: "Contract Intelligence and Enterprise AI", venue: "SFBen (Salesforce Ben)", year: "2024-2025", url: "https://www.salesforceben.com/", description: "Salesforce Ben is the most-read independent publication in the Salesforce ecosystem. Published and presented on contract data as the core moat for agentic AI programs: clause extraction, CLM architecture, and the data quality problem most AI transformation programs skip." },
   { date: "2026-06-04", type: "Talk", title: "Three-Minute Talk: Quantifying Contractual Leakage in Enterprise Ecosystems via ML-Driven Clause Extraction", venue: "IEEE-HKN TechX Conference", year: "Jun 4, 2026", url: "https://www.airmeet.com/event/adf16a30-18ab-11f1-9c5c-4fe0572a832d", description: "Presented original research on quantifying contractual leakage in enterprise ecosystems through ML-driven clause extraction, part of the Three-Minute Talks track at the 2026 IEEE-HKN TechX Conference chaired by Dr. Sean Bentley." },
   { date: "2026-06-13", type: "Talk", title: "Guest Speaker Session: HackPrix Season 3", venue: "HackPrix Season 3, Hyderabad, India", year: "Jun 13-14, 2026", url: "https://hackprix-2026.devfolio.co/", description: "Guest speaker session on enterprise AI and agentic systems at HackPrix Season 3, alongside serving as an industry judge for the hackathon." },
@@ -2675,7 +2678,8 @@ const PUBLISHED_ARTICLES = [
     title: "Lessons In Forecasting Discipline From A $40B Supply Chain",
     description: "Lessons from Amazon's supply chain: most forecasting errors start upstream, when protocol changes, enrollment and site data reach the supply plan too late to prevent waste.",
     url: "https://www.clinicalsupplyleader.com/doc/lessons-in-forecasting-discipline-from-a-b-supply-chain-0001",
-    alsoOn: [{"label": "Clinical Leader", "url": "https://www.clinicalleader.com/doc/lessons-in-forecasting-discipline-from-a-b-supply-chain-0001"}, {"label": "Clinical Leader newsletter, Sep 5", "url": "https://www.clinicalleader.com/doc/designing-more-representative-trials-through-strategic-planning-0001"}],
+    outlets: [{"name": "Clinical Supply Leader", "url": "https://www.clinicalsupplyleader.com/doc/lessons-in-forecasting-discipline-from-a-b-supply-chain-0001"}, {"name": "Clinical Leader", "url": "https://www.clinicalleader.com/doc/lessons-in-forecasting-discipline-from-a-b-supply-chain-0001"}],
+    featuredIn: [{"name": "Clinical Leader newsletter", "date": "Sep 5, 2026", "url": "https://www.clinicalleader.com/doc/designing-more-representative-trials-through-strategic-planning-0001"}],
     imageUrl: "https://vertassets.blob.core.windows.net/image/3d021318/3d021318-3303-4492-8cc8-e884fd57d6a1/warehouse_task_setup_gettyimages_2256605674.jpg",
     imageFallback: "CSL",
     iconBg: "#0B2B5B"
@@ -2721,7 +2725,7 @@ const PUBLISHED_ARTICLES = [
     title: "Accountability Gaps Can Break Clinical Supply Contracts",
     description: "When responsibilities differ across clinical supply agreements, supply fails in the gaps. Aligning obligations up front prevents disputes, delays and risk.",
     url: "https://www.clinicalsupplyleader.com/doc/accountability-gaps-can-break-clinical-supply-contracts-0001",
-    alsoOn: [{"label": "Clinical Leader", "url": "https://www.clinicalleader.com/doc/accountability-gaps-can-break-clinical-supply-contracts-0001"}],
+    outlets: [{"name": "Clinical Supply Leader", "url": "https://www.clinicalsupplyleader.com/doc/accountability-gaps-can-break-clinical-supply-contracts-0001"}, {"name": "Clinical Leader", "url": "https://www.clinicalleader.com/doc/accountability-gaps-can-break-clinical-supply-contracts-0001"}],
     imageUrl: "https://vertassets.blob.core.windows.net/image/1d81ebe9/1d81ebe9-18e4-47e1-ba42-acce4bfdee19/legal_settlement__financial_report_gettyimages_1413994710.jpg",
     imageFallback: "CSL",
     iconBg: "#0B2B5B"
@@ -2767,7 +2771,7 @@ const PUBLISHED_ARTICLES = [
     title: "Fixing The Data Problem Before AI Can Help Clinical Trial Supply",
     description: "AI cannot fix clinical supply forecasting on fragmented data. Structuring enrollment, inventory and label data has to come first.",
     url: "https://www.clinicalsupplyleader.com/doc/fixing-the-data-problem-before-ai-can-help-clinical-trial-supply-0001",
-    alsoOn: [{"label": "Clinical Supply Leader newsletter, Sep 8", "url": "https://www.clinicalsupplyleader.com/doc/fixing-the-data-problem-before-ai-can-help-clinical-trial-supply-0002"}],
+    featuredIn: [{"name": "Clinical Supply Leader newsletter", "date": "Sep 8, 2026", "url": "https://www.clinicalsupplyleader.com/doc/fixing-the-data-problem-before-ai-can-help-clinical-trial-supply-0002"}],
     imageUrl: "https://vertassets.blob.core.windows.net/image/63cb280f/63cb280f-3519-4cbb-9979-9196673719f9/pharmaceutical_industry_research__development_data_gettyimages_1354838510.jpg",
     imageFallback: "CSL",
     iconBg: "#0B2B5B"
@@ -2885,6 +2889,112 @@ const PUBLISHED_ARTICLES = [
     title: "Contract Data as the Moat for Agentic Salesforce",
     description: "Technical deep-dive into CLM architecture, clause extraction, and how clean contract data becomes the competitive moat for organizations deploying Agentforce.",
     url: "https://www.salesforceben.com/"
+  },
+  {
+    date: "2026",
+    platform: "HackerNoon",
+    platformClass: "platform-hackernoon",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2026",
+    title: "A Six-Step Framework for Auditing Enterprise AI Agents",
+    description: "Enterprises spun up agents fast and now run dozens that overlap and each carry a token bill and governance risk. A six-step method to find, consolidate and retire them.",
+    url: "https://hackernoon.com/a-six-step-framework-for-auditing-enterprise-ai-agents",
+    imageFallback: "HN",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026",
+    platform: "HackerNoon",
+    platformClass: "platform-hackernoon",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2026",
+    title: "What 15 Years of Pre-AI CPQ Got Right That AI Teams Now Re-Learn",
+    description: "Data modeling, validation and catalog hygiene set the ceiling on what an AI agent can do. CPQ teams have run these disciplines for 15 years.",
+    url: "https://hackernoon.com/what-15-years-of-pre-ai-cpq-got-right-that-ai-teams-now-re-learn",
+    imageFallback: "HN",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026",
+    platform: "HackerNoon",
+    platformClass: "platform-hackernoon",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2026",
+    title: "How to Run a Sandboxed LLM in a School Lab With No Cloud Bill",
+    description: "A small open model running locally keeps student data in the building, removes the per-use cloud bill, and works without reliable internet. How to set one up in a school lab.",
+    url: "https://hackernoon.com/how-to-run-a-sandboxed-llm-in-a-school-lab-with-no-cloud-bill",
+    imageFallback: "HN",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026",
+    platform: "HackerNoon",
+    platformClass: "platform-hackernoon",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2026",
+    title: "Token Detox for the Enterprise: Cutting Wasteful Inference in Workflows Already in Production",
+    description: "How to find and cut wasteful inference across AI workflows that are already deployed, treating token spend as operating hygiene.",
+    url: "https://hackernoon.com/token-detox-for-the-enterprise-cutting-wasteful-inference-in-workflows-already-in-production",
+    imageFallback: "HN",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2026",
+    platform: "HackerNoon",
+    platformClass: "platform-hackernoon",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2026",
+    title: "9 Questions That Expose Fake AI on a Product Roadmap",
+    description: "Many \"AI-powered\" roadmap items are deterministic logic with a model beside them. Nine questions that separate a real autonomous agent from a chatbot with an if-statement.",
+    url: "https://hackernoon.com/9-questions-that-expose-fake-ai-on-a-product-roadmap",
+    imageFallback: "HN",
+    iconBg: "#0B2B5B"
+  },
+  {
+    date: "2025-06-01",
+    platform: "Apex Hours",
+    platformClass: "platform-apex",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2024-2025",
+    title: "AI + CPQ: Designing Agentic Quote-to-Cash",
+    description: "Apex Hours is one of the largest free learning communities in the Salesforce ecosystem. Spoke on the intersection of Salesforce Agentforce and CPQ, covering agentic automation, pricing intelligence, and autonomous deal management.",
+    url: "https://www.apexhours.com/"
+  },
+  {
+    date: "2025-01-02",
+    platform: "Apex Hours",
+    platformClass: "platform-apex",
+    type: "Article",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2024-2025",
+    title: "AI + CPQ: Building Autonomous Deal Management in Salesforce",
+    description: "Session covering the integration of Salesforce Agentforce with Vlocity CPQ, including live agentic pricing demonstrations and production architecture patterns.",
+    url: "https://www.apexhours.com/"
+  },
+  {
+    date: "2015-06-01",
+    platform: "IEEE",
+    platformClass: "platform-ieee",
+    type: "Publication",
+    roleTag: "role-fellow",
+    roleLabel: "Author",
+    year: "2014-2015",
+    title: "3 Peer-Reviewed Papers (IEEE & Elsevier)",
+    description: "Published research on demand forecasting, bio-inspired image classification, and mobile cloud computing architecture. 55+ total citations on Google Scholar.",
+    url: "https://scholar.google.com/citations?user=XA_-VzAAAAAJ"
   }
 ];
 
@@ -3577,7 +3687,7 @@ const WRITING_TYPES = [
   { key: 'Expert Panel', label: 'Expert panels' },
   { key: 'Feature',      label: 'Coverage' },
   { key: 'Talk',         label: 'Talks' },
-  { key: 'Publication',  label: 'Research' }
+  { key: 'Publication',  label: 'Research papers' }
 ];
 
 function renderMedia() {
@@ -3589,18 +3699,21 @@ function renderMedia() {
       <div class="media-card-body">
         <div class="media-card-top">
           <div class="media-card-tags">
-            <span class="media-platform ${m.platformClass}">${m.platform}</span>
+            ${m.outlets ? m.outlets.map(o => `<span class="media-platform">${o.name}</span>`).join('') : `<span class="media-platform ${m.platformClass}">${m.platform}</span>`}
             ${m.roleLabel ? `<span class="media-role-tag ${m.roleTag}">${m.roleLabel}</span>` : `<span class="media-role-tag role-member">${m.type}</span>`}
           </div>
           <span class="media-year">${m.year}</span>
         </div>
         <div class="media-title">${m.title}</div>
         <p class="media-desc">${m.description}</p>
-        ${m.alsoOn ? `<p class="media-also">Also in ${m.alsoOn.map(a => `<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.label}</a>`).join(', ')}</p>` : ''}
-        <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">${m.type === 'Talk' ? 'View' : 'Read'} →</a>
+        ${m.featuredIn ? `<p class="media-also">Featured in ${m.featuredIn.map(f => `<a href="${f.url}" target="_blank" rel="noopener noreferrer">${f.name}, ${f.date}</a>`).join(' and ')}</p>` : ''}
+        ${m.outlets
+          ? `<div class="media-xpub"><span class="media-xpub-label">Cross-published in ${m.outlets.length} outlets</span><div class="media-xpub-links">${m.outlets.map(o => `<a href="${o.url}" target="_blank" rel="noopener noreferrer" class="media-link">Read on ${o.name} →</a>`).join('')}</div></div>`
+          : `<a href="${m.url}" target="_blank" rel="noopener noreferrer" class="media-link">${m.type === 'Talk' ? 'View' : 'Read'} →</a>`}
       </div>
     </div>`).join('');
 
+  // A cross-published card is one piece, so it counts once in every filter
   const types = WRITING_TYPES.filter(t => items.some(m => m.type === t.key));
   const row = document.getElementById('writingFilterRow');
   row.innerHTML = [`<button type="button" class="judging-filter-chip active" data-type="all" aria-pressed="true">All <span class="chip-count">${items.length}</span></button>`]
@@ -3935,7 +4048,7 @@ function buildSearchIndex() {
   MENTORSHIP.forEach(m => idx.push({ title: m.title, meta: (m.org || 'Mentorship'), section: 'mentorship', url: m.url }));
   SPEAKING.forEach(s => idx.push({ title: s.title, meta: s.venue + ' · Speaking', section: 'speaking', url: s.url }));
   MEDIA.forEach(m => idx.push({ title: m.title, meta: m.platform + ' · Media', section: 'media', url: m.url }));
-  PUBLISHED_ARTICLES.forEach(p => idx.push({ title: p.title, meta: p.platform + ' · Article', section: 'media', url: p.url }));
+  PUBLISHED_ARTICLES.forEach(p => idx.push({ title: p.title, meta: (p.outlets ? p.outlets.map(o => o.name).join(' + ') : p.platform) + ' · ' + p.type, section: 'media', url: p.url }));
   EDUCATION.forEach(e => idx.push({ title: e.degree, meta: e.school, section: 'education' }));
   MEMBERSHIPS.forEach(m => idx.push({ title: m.name, meta: 'Membership', section: 'memberships', url: m.url }));
   return idx;
